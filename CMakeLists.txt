@@ -67,3 +67,5 @@ add_executable(lisp3d
 	src/lua/lparser.c   
 	src/lua/ltablib.c  
 	src/lua/print.c)
+
+install(TARGETS lisp3d DESTINATION bin)

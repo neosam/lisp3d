@@ -108,6 +108,12 @@ void game()
 
 int main(int argc, char **argv)
 {
+  if (argc==1) {
+    printf("lisp3d 0.0.1\n");
+    printf("Usage: lisp3d worldfile\n");
+    return 1;
+  }
+
   printf("Init Video.. ");
   fflush(stdout);
   initVideo();
