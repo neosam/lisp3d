@@ -15,6 +15,8 @@ typedef struct Quad Quad;
 
 Quad *newQuad(Object *obj, double sizeX, double sizeY, double sizeZ);
 
+void quadDraw(Quad *quad);
+
 /* Commands for global index */
 double *quadGetRGB(int index);
 void quadSetRGB(int index, double r, double g, double b);

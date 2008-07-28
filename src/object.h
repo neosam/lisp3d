@@ -19,6 +19,9 @@ struct Object {
 
   /* Events */
   char *onDraw, *onInit;
+
+  /* Draw variables */
+  float width, height, depth;
 }; 
 typedef struct Object Object;
 

@@ -22,44 +22,6 @@ void initVideo()
 
 void drawQuad(Quad *quad)
 {
-  glBegin(GL_QUADS);
-  // Front
-  glColor3f(quad->r, quad->g, quad->b);
-  glVertex3f( quad->sizeX/2,  quad->sizeY/2, quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2,  quad->sizeY/2, quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2, -quad->sizeY/2, quad->sizeZ/2);
-  glVertex3f( quad->sizeX/2, -quad->sizeY/2, quad->sizeZ/2);
-
-  glVertex3f( quad->sizeX/2,  quad->sizeY/2, -quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2,  quad->sizeY/2, -quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2, -quad->sizeY/2, -quad->sizeZ/2);
-  glVertex3f( quad->sizeX/2, -quad->sizeY/2, -quad->sizeZ/2);
-
-  // Side
-  glVertex3f( quad->sizeX/2,  quad->sizeY/2,  quad->sizeZ/2);
-  glVertex3f( quad->sizeX/2,  quad->sizeY/2, -quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2,  quad->sizeY/2, -quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2,  quad->sizeY/2,  quad->sizeZ/2);
-
-  glVertex3f( quad->sizeX/2,  -quad->sizeY/2,  quad->sizeZ/2);
-  glVertex3f( quad->sizeX/2,  -quad->sizeY/2, -quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2,  -quad->sizeY/2, -quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2,  -quad->sizeY/2,  quad->sizeZ/2);
-
-  // Topdown
-  glVertex3f( quad->sizeX/2,  quad->sizeY/2,  quad->sizeZ/2);
-  glVertex3f( quad->sizeX/2, -quad->sizeY/2,  quad->sizeZ/2);
-  glVertex3f( quad->sizeX/2, -quad->sizeY/2, -quad->sizeZ/2);
-  glVertex3f( quad->sizeX/2,  quad->sizeY/2, -quad->sizeZ/2);
-
-  glVertex3f(-quad->sizeX/2,  quad->sizeY/2,  quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2, -quad->sizeY/2,  quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2, -quad->sizeY/2, -quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2,  quad->sizeY/2, -quad->sizeZ/2);
-
-
-  
-  glEnd();
 }
 
 void draw(Object *obj) {
@@ -70,7 +32,10 @@ void draw(Object *obj) {
 
   switch (obj->type) {
   case QUAD:
-    drawQuad((Quad*)obj);
+    quadDraw((Quad*)obj);
+    break;
+  case TRIANGLE:
+    triangleDraw((Triangle*)obj);
     break;
   }
   for (i = 0; obj->childs[i] != NULL; i++)

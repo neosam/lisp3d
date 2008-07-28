@@ -37,6 +37,7 @@ add_executable(lisp3d
 	src/parser.c
 	src/quad.c
 	src/test.c
+	src/triangle.c
 	src/lua/lapi.c
 	src/lua/ldebug.c  
 	src/lua/linit.c     

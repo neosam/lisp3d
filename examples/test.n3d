@@ -16,6 +16,12 @@
 
  Hier ist der zweite Quader.
  (quad (name="q2" sizeX="5.0" sizeY="0.333" sizeZ="0.333" onInit="initText"))
+
+ Hier mal ein Dreieck.
+ (triangle (x1="0", y1="1", z1="0.0"
+	x2="-1" y2="-1" z2="0"
+	x3="1" y3="-1" z3="0"))
+
  (camera (x="0" y="0" z="-5" frontX="0" frontY="0" frontZ="0"
 	upX="0" upY="1" upZ="0"))
 )

@@ -9,6 +9,7 @@
 #include "object.h"
 #include "quad.h"
 #include "camera.h"
+#include "triangle.h"
 
 #define CQUAD(x) ((Quad*)(x))
 
@@ -18,6 +19,7 @@ enum ObjType {
   OBJECT,
   DRAW_OBJECT,
   QUAD,
+  TRIANGLE,
   CAMERA,
   CODE,
   LASTELEM

@@ -147,6 +147,10 @@ Object *createObject(char *name, char **list)
     cam = cameraInit(obj, list);
     return (Object*) cam;
   }
+  else if (strcmp(name, "triangle") == 0) {
+    return (Object*) triangleInit(obj, list);
+  }
+
   else
     return obj;
 }
