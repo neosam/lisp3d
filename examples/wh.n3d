@@ -1,0 +1,8 @@
+(world ()
+ (room (name="bad" sizeX="2" sizeY="2" sizeZ="2"))
+ (room (name="wh-zimmer-right")
+  (bad (xAlign="right" zAlign="far")))
+ (room (name="wh-zimmer-left")
+  (bad (xAlign="left" yAlign="far")))
+ (room (name="kueche"))...
+)

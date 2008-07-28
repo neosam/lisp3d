@@ -1,0 +1,21 @@
+(world (test="blub")  World ist momentan nur ein Test
+
+ Ein bischen LUA Code
+ (code (cname="initQ1") (print "Starte q1"))
+ (code (cname="initText") (
+	r, g, b = quadGetRGB(id)
+	print ("Farben", r, g, b)
+	b = 1
+	print ("Farben neu", r, g, b);
+	quadSetRGB(id, r, g, b)
+ ))
+
+ Definiere ersten Quader, der sayHello beim zeichnen ausfuehrt
+ (quad (name="q1" sizeX="1.0" sizeY="2.0" sizeZ="1.0" onInit="initText"
+	r="1.0" g="0.0" b="0.0"))
+
+ Hier ist der zweite Quader.
+ (quad (name="q2" sizeX="5.0" sizeY="0.333" sizeZ="0.333" onInit="initText"))
+ (camera (x="0" y="0" z="-5" frontX="0" frontY="0" frontZ="0"
+	upX="0" upY="1" upZ="0"))
+)
