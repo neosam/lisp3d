@@ -46,7 +46,6 @@ void layoutXSizer(Object *obj)
   LayoutX *lay = (LayoutX*) obj;
 
   if (obj->childs[0] == NULL) {
-    printf("Layout: no objects\n");
     obj->minX = obj->minY = obj->minZ = 
       obj->maxX = obj->maxY = obj->maxZ = 
       obj->width = obj->height = obj->depth = 0.0;
@@ -63,7 +62,6 @@ void layoutXSizer(Object *obj)
     width += obj->childs[i]->width;
   }
 
-  printf("Layout: %i\n", i);
 
   obj->minX = -width/2;
   obj->maxX = width/2;
@@ -81,7 +79,6 @@ void layoutXSizer(Object *obj)
   for (i = 0; i < lay->childs; i++) {
     lay->offsetx[i] = -(obj->childs[i]->maxX + obj->childs[i]->minX) / 2 + 
       width + obj->childs[i]->width/2;
-    printf("%f\n", lay->offsetx[i]);
     lay->offsety[i] = -(obj->childs[i]->maxY + obj->childs[i]->minY) / 2;
     lay->offsetz[i] = -(obj->childs[i]->maxZ + obj->childs[i]->minZ) / 2;
     width += obj->childs[i]->width;

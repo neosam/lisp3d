@@ -14,8 +14,6 @@ Object *sizing(Object *obj)
   for (i = 0; obj->childs[i] != NULL; i++)
     sizing(obj->childs[i]);
 
-  printf("Parsing type %i\n", obj->type);
-
   if (obj->type > 0 && obj->type < CAMERA)
     taglist[obj->type].sizerfunc(obj);
 

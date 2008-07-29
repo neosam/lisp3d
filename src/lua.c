@@ -38,8 +38,6 @@ int wrapper_quadSetRGB(lua_State *l)
   g = lua_tonumber(l, 3);
   b = lua_tonumber(l, 4);
 
-  printf("%i %f %f\n", index, r, g, b);
-  
   lua_pop(l, lua_gettop(l));
 
   quadSetRGB(index, r, g, b);

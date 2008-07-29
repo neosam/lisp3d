@@ -118,6 +118,4 @@ void quadSetRGB(int index, double r, double g, double b)
   quad->r = r;
   quad->g = g;
   quad->b = b;
-
-  printf("%i %f %f %f\n", index, r, g, b);
 }

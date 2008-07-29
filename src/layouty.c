@@ -46,7 +46,6 @@ void layoutYSizer(Object *obj)
   LayoutY *lay = (LayoutY*) obj;
 
   if (obj->childs[0] == NULL) {
-    printf("Layout: no objects\n");
     obj->minX = obj->minY = obj->minZ = 
       obj->maxX = obj->maxY = obj->maxZ = 
       obj->width = obj->height = obj->depth = 0.0;
@@ -63,7 +62,6 @@ void layoutYSizer(Object *obj)
     height += obj->childs[i]->height;
   }
 
-  printf("Layout-y: %i\n", i);
 
   obj->minX = -width/2;
   obj->maxX = width/2;
@@ -81,7 +79,6 @@ void layoutYSizer(Object *obj)
   for (i = 0; i < lay->childs; i++) {
     lay->offsety[i] = -(obj->childs[i]->maxY + obj->childs[i]->minY) / 2 + 
       height + obj->childs[i]->height/2;
-    printf("%f\n", lay->offsety[i]);
     lay->offsetx[i] = -(obj->childs[i]->maxX + obj->childs[i]->minX) / 2;
     lay->offsetz[i] = -(obj->childs[i]->maxZ + obj->childs[i]->minZ) / 2;
     height += obj->childs[i]->height;

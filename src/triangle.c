@@ -131,6 +131,4 @@ void triangleSetRGB(int index, double r, double g, double b)
   tri->r = r;
   tri->g = g;
   tri->b = b;
-
-  printf("%i %f %f %f\n", index, r, g, b);
 }
