@@ -31,6 +31,16 @@
 	x3="1" y3="-1" z3="-1"
 	r="1.0")))
 
+ (layout-inner ()     Nicht transparentes Bermuda Triangle Zeichen!
+   (triangle (x1="0" y1="1" z1="0.0"
+	x2="-1" y2="-1" z2="0"
+	x3="1" y3="-1" z3="0"
+	r="0.7" g="0.7" b="0.7"))
+   (triangle (x1="0.4" y1="1" z1="0.0"
+	x2="-0.6" y2="-1" z2="0"
+	x3="1.4" y3="-1" z3="0"
+	r="0.7" g="0.7" b="0.7")))
+
 
  Und noch ein Rechteck.
  (rect (x1="-1" y1="-1" z1="2"
