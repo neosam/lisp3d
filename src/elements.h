@@ -13,6 +13,8 @@
 #include "rect.h"
 #include "layoutinner.h"
 #include "layoutx.h"
+#include "layouty.h"
+#include "layoutz.h"
 
 #define CQUAD(x) ((Quad*)(x))
 
@@ -34,6 +36,8 @@ enum ObjType {
   RECT,
   LAYOUT_INNER,
   LAYOUT_X,
+  LAYOUT_Y,
+  LAYOUT_Z,
   CAMERA,
   CODE,
   LASTELEM

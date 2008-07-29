@@ -35,6 +35,8 @@ add_executable(lisp3d
 	src/graphics.c
 	src/layoutinner.c
 	src/layoutx.c
+	src/layouty.c
+	src/layoutz.c
 	src/lua.c
 	src/object.c
 	src/parser.c

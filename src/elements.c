@@ -20,6 +20,8 @@ struct _tags taglist[] = {
   {"rect", rectInit, rectDraw, rectSizer},
   {"layout-inner", layoutInnerInit, layoutInnerDraw, layoutInnerSizer},
   {"layout-x", layoutXInit, layoutXDraw, layoutXSizer},
+  {"layout-y", layoutYInit, layoutYDraw, layoutYSizer},
+  {"layout-z", layoutZInit, layoutZDraw, layoutZSizer},
   {"camera", cameraInit, cameraDraw, NULL},
   {NULL, NULL, NULL}}; /* Last must be null */
 
