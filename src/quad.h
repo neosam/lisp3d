@@ -9,13 +9,14 @@ struct Quad {
 
   /* Dimensions */
   double sizeX, sizeY, sizeZ;
-  int r, g, b;
+  double r, g, b;
 };
 typedef struct Quad Quad;
 
-Quad *newQuad(Object *obj, double sizeX, double sizeY, double sizeZ);
-
-void quadDraw(Quad *quad);
+Quad *newQuad(Object *obj);
+Object *quadInit(Object *obj, char **list);
+void quadDraw(Object *obj);
+void quadSizer(Object *obj);
 
 /* Commands for global index */
 double *quadGetRGB(int index);

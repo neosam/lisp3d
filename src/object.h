@@ -22,10 +22,13 @@ struct Object {
 
   /* Draw variables */
   float width, height, depth;
+  float minX, minY, minZ;
+  float maxX, maxY, maxZ;
 }; 
 typedef struct Object Object;
 
-Object *newObject(int type, Object *parent, char *name, char *class);
+Object *newObject();
+Object *objectInit(char **list);
 
 char *objGetName(int index);
 

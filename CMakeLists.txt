@@ -32,10 +32,14 @@ add_executable(lisp3d
 	src/camera.c
 	src/elements.c
 	src/globalindex.c
+	src/graphics.c
+	src/layoutinner.c
+	src/layoutx.c
 	src/lua.c
 	src/object.c
 	src/parser.c
 	src/quad.c
+	src/rect.c
 	src/test.c
 	src/triangle.c
 	src/lua/lapi.c

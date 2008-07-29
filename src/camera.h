@@ -19,6 +19,7 @@ typedef struct Camera Camera;
 extern Camera *cam;
 
 Camera *newCamera(Object *obj);
-Camera *cameraInit(Object *obj, char **list);
+Object *cameraInit(Object *obj, char **list);
+void cameraDraw(Object *obj);
 
 #endif

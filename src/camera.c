@@ -30,48 +30,27 @@ Camera *newCamera(Object *obj)
   result->aspect = 1.33333;
 }
 
-Camera *cameraInit(Object *obj, char **list)
+Object *cameraInit(Object *obj, char **list)
 {
   obj->type = CAMERA;
   Camera *dst = newCamera(obj);
   char *buffer;
+  elemList = list;
+  
+  elemSetd("x", &dst->x);
+  elemSetd("y", &dst->y);
+  elemSetd("z", &dst->z);
+  
+  elemSetd("frontX", &dst->frontX);
+  elemSetd("frontY", &dst->frontY);
+  elemSetd("frontZ", &dst->frontZ);
 
-  buffer = lookupList(list, "x");
-  if (buffer != NULL)
-    dst->x = strtod(buffer, NULL);
-  buffer = lookupList(list, "y");
-  if (buffer != NULL)
-    dst->y = strtod(buffer, NULL);
-  buffer = lookupList(list, "z");
-  if (buffer != NULL)
-    dst->z = strtod(buffer, NULL);
+  elemSetd("upX", &dst->upX);
+  elemSetd("upY", &dst->upY);
+  elemSetd("upZ", &dst->upZ);
 
-  buffer = lookupList(list, "frontX");
-  if (buffer != NULL)
-    dst->frontX = strtod(buffer, NULL);
-  buffer = lookupList(list, "frontY");
-  if (buffer != NULL)
-    dst->frontY = strtod(buffer, NULL);
-  buffer = lookupList(list, "frontZ");
-  if (buffer != NULL)
-    dst->frontZ = strtod(buffer, NULL);
-
-  buffer = lookupList(list, "upX");
-  if (buffer != NULL)
-    dst->upX = strtod(buffer, NULL);
-  buffer = lookupList(list, "upY");
-  if (buffer != NULL)
-    dst->upY = strtod(buffer, NULL);
-  buffer = lookupList(list, "upZ");
-  if (buffer != NULL)
-    dst->upZ = strtod(buffer, NULL);
-
-  buffer = lookupList(list, "fovy");
-  if (buffer != NULL)
-    dst->fovy = strtod(buffer, NULL);
-  buffer = lookupList(list, "aspect");
-  if (buffer != NULL)
-    dst->aspect = strtod(buffer, NULL);
+  elemSetd("fovy", &dst->fovy);
+  elemSetd("aspect", &dst->aspect);
 
 
   glMatrixMode(GL_PROJECTION);
@@ -81,5 +60,10 @@ Camera *cameraInit(Object *obj, char **list)
 
   cam = dst;
 
-  return dst;
+  return (Object*)dst;
+}
+
+void cameraDraw(Object *obj)
+{
+
 }

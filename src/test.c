@@ -20,32 +20,12 @@ void initVideo()
   glLoadIdentity();
 }
 
-void drawQuad(Quad *quad)
-{
-}
-
-void draw(Object *obj) {
-  int i;
-
-  if (obj->onDraw != NULL)
-    execEvent(obj->onDraw, obj);
-
-  switch (obj->type) {
-  case QUAD:
-    quadDraw((Quad*)obj);
-    break;
-  case TRIANGLE:
-    triangleDraw((Triangle*)obj);
-    break;
-  }
-  for (i = 0; obj->childs[i] != NULL; i++)
-    draw(obj->childs[i]);
-}
 
 void game()
 {
   SDL_Event ev;
   int done = 0;
+  double angle = 0.0;
 
   glClearColor(1.0, 1.0, 1.0, 0.0);
   glColor3f(0.0, 0.0, 0.0);
@@ -66,6 +46,8 @@ void game()
     gluLookAt(cam->x, cam->y, cam->z,
 	      cam->frontX, cam->frontY, cam->frontZ,
 	      cam->upX, cam->upY, cam->upZ);
+    glRotatef(angle, 0.0, 1.0, 0.0);
+    angle+=0.3;
     draw(obj);
     SDL_GL_SwapBuffers();
   }

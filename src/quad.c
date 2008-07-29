@@ -4,22 +4,41 @@
 
 #include "quad.h"
 #include "globalindex.h"
+#include "parser.h"
 
-Quad *newQuad(Object *obj, double sizeX, double sizeY, double sizeZ)
+Quad *newQuad(Object *obj)
 {
   Quad *quad = (Quad *) malloc(sizeof(Quad));
 
   quad->obj = *obj;
 
-  quad->sizeX = sizeX;
-  quad->sizeY = sizeY;
-  quad->sizeZ = sizeZ;
+  quad->sizeX = 0.0;
+  quad->sizeY = 0.0;
+  quad->sizeZ = 0.0;
 
   return quad;
 }
 
-void quadDraw(Quad *quad)
+Object *quadInit(Object *obj, char **list)
 {
+  Quad *quad;
+  obj->type = QUAD;
+  quad = newQuad(obj);
+  elemList = list;
+  
+  elemSetd("sizeX", &quad->sizeX);
+  elemSetd("sizeY", &quad->sizeY);
+  elemSetd("sizeZ", &quad->sizeZ);
+  elemSetd("r", &quad->r);
+  elemSetd("g", &quad->g);
+  elemSetd("b", &quad->b);
+  
+  return (Object*) quad;
+}
+
+void quadDraw(Object *obj)
+{
+  Quad *quad = (Quad*) obj;
   glBegin(GL_QUADS);
   // Front
   glColor3f(quad->r, quad->g, quad->b);
@@ -58,6 +77,23 @@ void quadDraw(Quad *quad)
 
   
   glEnd();
+}
+
+void quadSizer(Object *obj)
+{
+  Quad *quad = (Quad*) obj;
+
+  obj->minX = -quad->sizeX/2;
+  obj->minY = -quad->sizeY/2;
+  obj->minZ = -quad->sizeZ/2;
+
+  obj->maxX = quad->sizeX/2;
+  obj->maxY = quad->sizeY/2;
+  obj->maxZ = quad->sizeZ/2;
+  
+  obj->width = quad->sizeX;
+  obj->height = quad->sizeY;
+  obj->depth = quad->sizeZ;
 }
 
 

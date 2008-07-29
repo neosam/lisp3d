@@ -12,22 +12,26 @@ Triangle *newTriangle(Object *obj)
 
   tri->obj = *obj;
 
+  tri->x1 = 0.0;
+  tri->x2 = 0.0;
+  tri->x3 = 0.0;
+  tri->y1 = 0.0;
+  tri->y2 = 0.0;
+  tri->y3 = 0.0;
+  tri->z1 = 0.0;
+  tri->z2 = 0.0;
+  tri->z3 = 0.0;
+
+
+  tri->r = 0.0;
+  tri->g = 0.0;
+  tri->b = 0.0;
+
   return tri;
 }
 
-char **elemList;
 
-void elemSetd(char *src, double *dst)
-{
-  char *buffer;
-
-  buffer = lookupList(elemList, src);
-  if (buffer != NULL)
-    *dst = strtod(buffer, NULL);
-
-}
-
-Triangle *triangleInit(Object *obj, char **list)
+Object *triangleInit(Object *obj, char **list)
 {
   obj->type = TRIANGLE;
   Triangle *dst = newTriangle(obj);
@@ -46,12 +50,14 @@ Triangle *triangleInit(Object *obj, char **list)
   elemSetd("g", &dst->g);
   elemSetd("b", &dst->b);
 
-  return dst;
+  return (Object *)dst;
 }
 
 
-void triangleDraw(Triangle *tri)
+void triangleDraw(Object *obj)
 {
+  Triangle *tri = (Triangle *)obj;
+  
   glBegin(GL_TRIANGLES);
   glColor3f(tri->r, tri->g, tri->b);
 
@@ -62,6 +68,47 @@ void triangleDraw(Triangle *tri)
   glEnd();
 }
 
+void triangleSizer(Object *obj)
+{
+  Triangle *tri = (Triangle*) obj;
+
+  double minBuffer = tri->x1, 
+    maxBuffer = tri->x1;
+
+  if (tri->x2 < minBuffer)
+    minBuffer = tri->x2;
+  else
+    maxBuffer = tri->x2;
+
+  obj->minX = (minBuffer < tri->x3)? minBuffer: tri->x3;
+  obj->maxX = (maxBuffer > tri->x3)? maxBuffer: tri->x3;
+
+  minBuffer = tri->y1;
+  maxBuffer = tri->y1;
+
+  if (tri->y2 < minBuffer)
+    minBuffer = tri->y2;
+  else
+    maxBuffer = tri->y2;
+
+  obj->minY = (minBuffer < tri->y3)? minBuffer: tri->y3;
+  obj->maxY = (maxBuffer > tri->y3)? maxBuffer: tri->y3;
+
+  minBuffer = tri->z1;
+  maxBuffer = tri->z1;
+
+  if (tri->z2 < minBuffer)
+    minBuffer = tri->z2;
+  else
+    maxBuffer = tri->z2;
+
+  obj->minZ = (minBuffer < tri->z3)? minBuffer: tri->z3;
+  obj->maxZ = (maxBuffer > tri->z3)? maxBuffer: tri->z3;
+
+  obj->width = obj->maxX - obj->minX;
+  obj->height = obj->maxY - obj->minY;
+  obj->depth = obj->maxZ - obj->minZ;
+}
 
 
 double *triangleGetRGB(int index)

@@ -7,12 +7,24 @@
 #include "debug.h"
 #include "globalindex.h"
 
+Object *sizing(Object *obj)
+{
+  int i;
+
+  for (i = 0; obj->childs[i] != NULL; i++)
+    sizing(obj->childs[i]);
+
+  if (obj->type > 0 && obj->type < CAMERA)
+    taglist[obj->type].sizerfunc(obj);
+
+  return obj;
+}
 
 Object *parse(char *filename)
 {
   FILE *file = fopen(filename, "r");
   while (fgetc(file) != '(');
-  return parseFile(file, NULL);
+  return sizing(parseFile(file, NULL));
 }
 
 int isLetter(char c) {
@@ -100,59 +112,16 @@ char *lookupList(char **list, char *key)
 Object *createObject(char *name, char **list)
 {
   Object *obj;
-  Quad *quad;
-  char *objName, *objClass,
-    *quSizeX, *quSizeY, *quSizeZ,
-    *quR, *quG, *quB,
-    *onDraw, *onInit;
+  int i;
 
-  objName = lookupList(list, "name");
-  objClass = lookupList(list, "class");
-  onDraw = lookupList(list, "onDraw");
-  onInit = lookupList(list, "onInit");
+  obj = objectInit(list);
 
-  obj = newObject(0, NULL, objName, objClass);
-  obj->onDraw = onDraw;
-  obj->onInit = onInit;
-
-  if (strcmp(name, "quad") == 0) {
-    obj->type = QUAD;
+  for (i = 0; taglist[i].name != NULL; i++) {
+    if (strcmp(name, taglist[i].name) == 0) 
+      return taglist[i].initfunc(obj, list);
+  }
     
-    quSizeX = lookupList(list, "sizeX");
-    quSizeX = (quSizeX == NULL)? "": quSizeX;
-    quSizeY = lookupList(list, "sizeY");
-    quSizeY = (quSizeY == NULL)? "": quSizeY;
-    quSizeZ = lookupList(list, "sizeZ");
-    quSizeZ = (quSizeZ == NULL)? "": quSizeZ;
-    quR = lookupList(list, "r");
-    quR = (quR == NULL)? "0.0": quR;
-    quG = lookupList(list, "g");
-    quG = (quG == NULL)? "0.0": quG;
-    quB = lookupList(list, "b");
-    quB = (quB == NULL)? "0.0": quB;
-    
-
-    quad = newQuad(obj, 
-		   strtod(quSizeX, NULL), 
-		   strtod(quSizeY, NULL), 
-		   strtod(quSizeZ, NULL));
-
-    quad->r = strtod(quR, NULL);
-    quad->g = strtod(quG, NULL);
-    quad->b = strtod(quB, NULL);
-
-    return (Object*) quad;
-  }
-  else if (strcmp(name, "camera") == 0) {
-    cam = cameraInit(obj, list);
-    return (Object*) cam;
-  }
-  else if (strcmp(name, "triangle") == 0) {
-    return (Object*) triangleInit(obj, list);
-  }
-
-  else
-    return obj;
+  return obj;
 }
 
 Object *parseCode(FILE *file, Object *parent, char **propertyList)
@@ -269,3 +238,23 @@ Object *parseFile(FILE *file, Object *parent)
 
   return obj;
 }
+
+void elemSetd(char *src, double *dst)
+{
+  char *buffer;
+
+  buffer = lookupList(elemList, src);
+  if (buffer != NULL)
+    *dst = strtod(buffer, NULL);
+
+}
+
+void elemSets(char *src, char **dst)
+{
+  char *buffer;
+
+  buffer = lookupList(elemList, src);
+  if (buffer != NULL)
+    *dst = buffer;
+}
+

@@ -16,8 +16,9 @@ struct Triangle {
 typedef struct Triangle Triangle;
 
 Triangle *newTriangle(Object *obj);
-Triangle *triangleInit(Object *obj, char **list);
-void triangleDraw(Triangle *tri);
+Object *triangleInit(Object *obj, char **list);
+void triangleDraw(Object *obj);
+void triangleSizer(Object *obj);
 
 /* Commands for global index */
 double *triangleGetRGB(int index);
