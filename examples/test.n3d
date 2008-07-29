@@ -1,3 +1,4 @@
+#!/usr/local/bin/lisp3d
 (layout-z ()
  (layout-x (test="blub")  layout-x zeichnet alles in x-Richtung nebeneinander
 
