@@ -8,9 +8,7 @@
 
 Quad *newQuad(Object *obj)
 {
-  Quad *quad = (Quad *) malloc(sizeof(Quad));
-
-  quad->obj = *obj;
+  Quad *quad = (Quad *) realloc(obj, sizeof(Quad));
 
   quad->sizeX = 0.0;
   quad->sizeY = 0.0;
@@ -40,7 +38,7 @@ void quadDraw(Object *obj)
 {
   Quad *quad = (Quad*) obj;
   glBegin(GL_QUADS);
-  // Front
+  /* Front */
   glColor3f(quad->r, quad->g, quad->b);
   glVertex3f( quad->sizeX/2,  quad->sizeY/2, quad->sizeZ/2);
   glVertex3f(-quad->sizeX/2,  quad->sizeY/2, quad->sizeZ/2);
@@ -52,7 +50,7 @@ void quadDraw(Object *obj)
   glVertex3f(-quad->sizeX/2, -quad->sizeY/2, -quad->sizeZ/2);
   glVertex3f( quad->sizeX/2, -quad->sizeY/2, -quad->sizeZ/2);
 
-  // Side
+  /* Side */
   glVertex3f( quad->sizeX/2,  quad->sizeY/2,  quad->sizeZ/2);
   glVertex3f( quad->sizeX/2,  quad->sizeY/2, -quad->sizeZ/2);
   glVertex3f(-quad->sizeX/2,  quad->sizeY/2, -quad->sizeZ/2);
@@ -63,7 +61,7 @@ void quadDraw(Object *obj)
   glVertex3f(-quad->sizeX/2,  -quad->sizeY/2, -quad->sizeZ/2);
   glVertex3f(-quad->sizeX/2,  -quad->sizeY/2,  quad->sizeZ/2);
 
-  // Topdown
+  /* Topdown */
   glVertex3f( quad->sizeX/2,  quad->sizeY/2,  quad->sizeZ/2);
   glVertex3f( quad->sizeX/2, -quad->sizeY/2,  quad->sizeZ/2);
   glVertex3f( quad->sizeX/2, -quad->sizeY/2, -quad->sizeZ/2);

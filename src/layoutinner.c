@@ -4,13 +4,12 @@
 #include "elements.h"
 #include "parser.h"
 #include "graphics.h"
+#include "debug.h"
 
 LayoutInner *newLayoutInner(Object *obj)
 {
-  LayoutInner *lay = (LayoutInner*) malloc(sizeof(LayoutInner));
+  LayoutInner *lay = (LayoutInner*) realloc(obj, sizeof(LayoutInner));
   
-  lay->obj = *obj;
-
   return lay;
 }
 
@@ -25,8 +24,12 @@ Object *layoutInnerInit(Object *obj, char **list)
 void layoutInnerDraw(Object *obj)
 {
   int i;
-  for (i = 0; obj->childs[i] != NULL; i++)
+
+  assert(obj!=NULL);
+  assert(obj->childs != NULL);
+  for (i = 0; obj->childs[i] != NULL; i++) {
     draw(obj->childs[i]); 
+  }
 }
 
 void layoutInnerSizer(Object *obj)

@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <SDL.h>
 #include <SDL_opengl.h>
+#include <assert.h>
 #include "elements.h"
 #include "lua.h"
 #include "globalindex.h"
 #include "parser.h"
+#include "debug.h"
 
 Object *obj;
 
@@ -72,6 +74,7 @@ int main(int argc, char **argv)
   printf("done\n");
 
   initGlobalIndex();
+  initElements();
 
   printf("Parsing %s... ", argv[1]);
   fflush(stdout);

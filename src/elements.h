@@ -15,6 +15,7 @@
 #include "layoutx.h"
 #include "layouty.h"
 #include "layoutz.h"
+#include "usertag.h"
 
 #define CQUAD(x) ((Quad*)(x))
 
@@ -23,9 +24,10 @@ struct _tags {
   Object *(*initfunc)(Object *obj, char **list);
   void (*drawfunc)(Object *obj);
   void (*sizerfunc)(Object *obj);
+  Object *ref;
 };
 
-extern struct _tags taglist[];
+extern struct _tags *taglist;
 
 
 /* Build in types */
@@ -43,8 +45,10 @@ enum ObjType {
   LASTELEM
 };
 
+void registerTag(char *name, Object*(*initfunc)(Object *obj, char **list),
+		 void (*drawfunc)(Object *obj), 
+		 void (*sizerfunc)(Object *obj), Object *ref);
 
-
-
+void initElements();
 
 #endif

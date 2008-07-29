@@ -1,0 +1,32 @@
+(layout-x ()
+   ;Hier werden objekte definiert
+   (define ()
+      ;Bermuda Triangle
+      (layout-inner (name="bermuda-triangle") 
+         (triangle (x1="0" y1="1" z1="0.0"
+		   x2="-1" y2="-1" z2="0"
+		   x3="1" y3="-1" z3="0"
+		   r="0.7" g="0.7" b="0.7"))
+         (triangle (x1="0.4" y1="1" z1="0.0"
+	 	   x2="-0.6" y2="-1" z2="0"
+		   x3="1.4" y3="-1" z3="0"
+		   r="0.7" g="0.7" b="0.7")))
+      ;Kreuz
+      (layout-inner (name="cross")
+         (quad (sizeX=".5" sizeY="1" sizeZ=".5"))
+	 (quad (sizeX="1" sizeY=".5" sizeZ=".5")))
+   )
+
+
+
+   ;Hier wird dann wirklich gezeichnet
+   (bermuda-triangle ())
+   (cross ())
+   (sizer (width="-2"))
+   (bermuda-triangle ())
+
+   (camera (x="0" y="0" z="5"
+   	   frontX="0" frontY="0" frontZ="0"
+   	   upY="1" ))
+)
+

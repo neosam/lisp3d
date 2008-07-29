@@ -10,9 +10,7 @@ Camera *cam;
 
 Camera *newCamera(Object *obj)
 {
-  Camera *result = (Camera *) malloc(sizeof(Camera));
-
-  result->obj = *obj;
+  Camera *result = (Camera *) realloc(obj, sizeof(Camera));
 
   result->x = 0.0;
   result->y = 0.0;

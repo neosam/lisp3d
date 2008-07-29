@@ -21,9 +21,9 @@ struct Object {
   char *onDraw, *onInit;
 
   /* Draw variables */
-  float width, height, depth;
-  float minX, minY, minZ;
-  float maxX, maxY, maxZ;
+  double width, height, depth;
+  double minX, minY, minZ;
+  double maxX, maxY, maxZ;
 }; 
 typedef struct Object Object;
 

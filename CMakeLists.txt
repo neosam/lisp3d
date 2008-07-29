@@ -21,9 +21,10 @@ link_libraries(${SDL_LIBRARY}
 	       ${SDLIMAGE_LIBRARY}
 	       ${OPENGL_LIBRARIES}
 	       ${OPENAL_LIBRARY}
-	       #{GLU_LIBRARY}
+	       ${GLU_LIBRARY}
 	       -lalut)
 
+#ADD_DEFINITIONS(-DNDEBUG)
 
 #configure_file(src/config.h.cmake ${CMAKE_BINARY_DIR}/config.h)
 
@@ -44,6 +45,7 @@ add_executable(lisp3d
 	src/rect.c
 	src/test.c
 	src/triangle.c
+	src/usertag.c
 	src/lua/lapi.c
 	src/lua/ldebug.c  
 	src/lua/linit.c     

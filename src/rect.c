@@ -7,9 +7,7 @@
 
 Rect *newRect(Object *obj)
 {
-  Rect *rect = (Rect*) malloc(sizeof(Rect));
-
-  rect->obj = *obj;
+  Rect *rect = (Rect*) realloc(obj, sizeof(Rect));
 
   rect->x1 = 0.0;
   rect->x2 = 0.0;

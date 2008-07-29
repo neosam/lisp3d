@@ -1,0 +1,71 @@
+(layout-inner ()
+
+   ;Definition
+   (define ()
+      ; Pyramide needed for tower
+      (layout-inner (name="pyramide")
+         (triangle (x1="0"   y1="1"  z1="0"
+		    x2="-.5" y2="-1" z2=".5"
+                    x3=".5"  y3="-1" z3=".5"))
+         (triangle (x1="0"   y1="1"  z1="0"
+		    x2="-.5" y2="-1" z2="-.5"
+                    x3=".5"  y3="-1" z3="-.5"))
+         (triangle (x1="0"   y1="1"  z1="0"
+		    x2="-.5" y2="-1" z2="-.5"
+		    x3="-.5" y3="-1" z3=".5"))
+         (triangle (x1="0"   y1="1"  z1="0"
+		    x2=".5"  y2="-1" z2="-.5"
+		    x3=".5"  y3="-1" z3=".5"))
+      )
+
+      ;Tower
+      (layout-y (name="church-tower")
+         (quad (sizeX="1" sizeY="4" sizeZ="1"))
+         (pyramide ())
+      )
+
+      ;Front church
+      (layout-y (name="church-front-down")
+         (quad (sizeX="2" sizeY="2" sizeZ="1"))
+	 (sizer (height="4"))
+      )
+
+      ;Church back
+      (quad (name="church-back" sizeX="4" sizeY="2" sizeZ="4"))
+      
+      ;Church roof
+      (layout-inner (name="church-roof")
+            (triangle (x1="0"  y1="2" z1="0"
+                       x2="-2" y2="0" z2="0"
+		       x3="2"  y3="0" z3="0"))
+            (triangle (x1="0"  y1="2" z1="4"
+                       x2="-2" y2="0" z2="4"
+		       x3="2"  y3="0" z3="4"))
+      )
+   )
+
+
+
+
+
+   ;Drawing
+   (layout-z ()
+      (layout-x () ;Front
+         (church-tower ())
+         (church-front-down ())
+         (church-tower ())
+      )
+      (layout-y () ;Back
+	 (church-back ())
+	 (church-roof ())
+         (sizer (height="2"))
+      )
+   )
+
+
+
+   ;Camera
+   (camera (x="0" y="5" z="10"
+   	   frontX="0" frontY="0" frontZ="0"
+   	   upY="1" ))
+)

@@ -9,10 +9,8 @@
 
 LayoutY *newLayoutY(Object *obj)
 {
-  LayoutY *lay = (LayoutY*) malloc(sizeof(LayoutY));
+  LayoutY *lay = (LayoutY*) realloc(obj, sizeof(LayoutY));
   
-  lay->obj = *obj;
-
   return lay;
 }
 

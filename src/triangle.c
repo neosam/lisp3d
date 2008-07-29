@@ -5,12 +5,11 @@
 #include "triangle.h"
 #include "globalindex.h"
 #include "parser.h"
+#include "debug.h"
 
 Triangle *newTriangle(Object *obj)
 {
-  Triangle *tri = (Triangle *) malloc(sizeof(Triangle));
-
-  tri->obj = *obj;
+  Triangle *tri = (Triangle *) realloc(obj, sizeof(Triangle));
 
   tri->x1 = 0.0;
   tri->x2 = 0.0;

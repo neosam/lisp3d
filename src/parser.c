@@ -14,7 +14,7 @@ Object *sizing(Object *obj)
   for (i = 0; obj->childs[i] != NULL; i++)
     sizing(obj->childs[i]);
 
-  if (obj->type > 0 && obj->type < CAMERA)
+  if (obj->type > 0 && obj->type < CAMERA | obj->type >= LASTELEM)
     taglist[obj->type].sizerfunc(obj);
 
   return obj;
@@ -34,10 +34,10 @@ int isLetter(char c) {
   return 0;
 }
 
-char **parseProperties(FILE *file)
+char **parseProperties(char *name, FILE *file)
 {
   char c;
-  int listPos = 0,
+  int listPos = 2,
     stringPos = 0;
   char **list = (char **)malloc(sizeof(char*) * 255);
   int state = 0;
@@ -47,6 +47,8 @@ char **parseProperties(FILE *file)
      2 = read param-value 
   */
   
+  list[0] = "tagname";
+  list[1] = name;
   
   for (c = fgetc(file); c != ')'; c = fgetc(file)) {
     switch (state) {
@@ -114,13 +116,24 @@ Object *createObject(char *name, char **list)
   Object *obj;
   int i;
 
+  DMSG("Create object - create base object\n");
+
   obj = objectInit(list);
 
+  DMSG("Create real object\n");
+
+
   for (i = 0; taglist[i].name != NULL; i++) {
-    if (strcmp(name, taglist[i].name) == 0) 
+    if (strcmp(name, taglist[i].name) == 0 &&
+	taglist[i].initfunc != NULL) 
       return taglist[i].initfunc(obj, list);
   }
     
+#ifndef NDEBUG
+  printf("DEBUG: Created Object %s with type %i\n", name, obj->type);
+#endif
+  DMSG("Object created\n");
+
   return obj;
 }
 
@@ -178,6 +191,8 @@ Object *parseFile(FILE *file, Object *parent)
   childs = (Object **) malloc(sizeof(Object) * 255);
   Object *obj;
 
+  DMSG("parse file\n");
+
   for (c = fgetc(file); c != ')'; c = fgetc(file)) {
     switch (state) {
     case 0:
@@ -185,6 +200,7 @@ Object *parseFile(FILE *file, Object *parent)
       case ' ':
 	name[i] = '\0';
 	state = 1;
+	DMSG("switch to state 1\n");
 	break;
       default:
 	name[i++] = c;
@@ -195,12 +211,16 @@ Object *parseFile(FILE *file, Object *parent)
     case 1:
       switch (c) {
       case '(':
-	propertyList = parseProperties(file);
+	propertyList = parseProperties(name, file);
 	obj = createObject(name, propertyList);
-	if (strcmp(name, "code") == 0)
+	if (strcmp(name, "code") == 0) {
 	  state = 3;
-	else
+	  DMSG("switch to state 3\n");
+	}
+	else {
 	  state = 2;
+	  DMSG("switch to state 2\n");
+	}
 	break;
       }
       break;
@@ -228,13 +248,17 @@ Object *parseFile(FILE *file, Object *parent)
 
   }
 
+  DMSG("Set parent and childs\n");
   obj->parent = parent;
   obj->childs = childs;
 
+  DMSG("Insert into Global index\n");
   insertGlobalIndex(obj);
 
   if (obj->onInit != NULL)
     execEvent(obj->onInit, obj);
+
+  DMSG("parsing finished\n");
 
   return obj;
 }
