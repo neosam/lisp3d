@@ -113,7 +113,7 @@ GLint objRegisterVertex(Object *obj,
 
   objCheckArrays(obj);
 
-  return obj->ventries--;
+  return obj->ventries-1;
 }
 
 int objAddFace(Object *obj, GLint v1, GLint v2, GLint v3)
@@ -128,7 +128,11 @@ int objAddFace(Object *obj, GLint v1, GLint v2, GLint v3)
  
   objCheckArrays(obj);
 
-  return obj->fentries--;
+#ifndef NDEBUG
+  printf("DEBUG Added face: %i\n", obj->fentries-1);
+#endif
+
+  return obj->fentries-1;
 }
 
 void objDraw(Object *obj)
@@ -139,5 +143,5 @@ void objDraw(Object *obj)
   glVertexPointer(3, GL_DOUBLE, 0, obj->vertices);
   glColorPointer(3, GL_DOUBLE, 0, obj->colors);
 
-  glDrawElements(GL_TRIANGLES, obj->fentries*3, GL_DOUBLE, obj->faces);
+  glDrawElements(GL_TRIANGLES, obj->fentries*3, GL_UNSIGNED_INT, obj->faces);
 }

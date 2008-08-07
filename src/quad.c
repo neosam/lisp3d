@@ -5,6 +5,7 @@
 #include "quad.h"
 #include "globalindex.h"
 #include "parser.h"
+#include "debug.h"
 
 Quad *newQuad(Object *obj)
 {
@@ -33,6 +34,14 @@ void quadCreateVertices(Quad *quad)
     bbottomleft =     objRegisterVertex(obj, -sizeX/2, -sizeY/2, -sizeZ/2),
     fbottomright =    objRegisterVertex(obj,  sizeX/2, -sizeY/2,  sizeZ/2), 
     bbottomright =    objRegisterVertex(obj,  sizeX/2, -sizeY/2, -sizeZ/2);
+
+#ifndef NDEBUG
+  printf("DEBUG: %i %i %i %i %i %i %i %i\n",
+	 ftopleft, btopleft,
+	 ftopright, btopright,
+	 fbottomleft, bbottomleft,
+	 fbottomright, bbottomright);
+#endif
 
   // Front
   objAddFace(obj, ftopright, ftopleft, fbottomleft);
