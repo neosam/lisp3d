@@ -33,6 +33,14 @@ Object *newObject()
   object->minZ = 0.0;
   object->maxZ = 0.0;
 
+
+  /* Initialize vertex attributes */
+  object->vertices = (GLdouble*)malloc(sizeof(GLdouble)*OBJ_ENTRY*3);
+  object->color = (GLdouble*)malloc(sizeof(GLdouble)*OBJ_ENTRY*3);
+  object->faces = (GLint*)malloc(sizeof(GLint)*OBJ_ENTRY*3);
+  object->entries = 0;
+  object->size = OBJ_ENTRY;
+
   return object;
 }
 

@@ -29,10 +29,11 @@ struct Object {
   double maxX, maxY, maxZ;
 
   /* Mesh settings */
-  GLdouble *vertices;
-  GLdouble *color;
-  GLdouble *faces;
-  int entries, size;
+  GLdouble *vertices;    // Vertices of the mesh
+  GLdouble *color;       // Vertex color
+  GLint *faces;          // Triangles hold three meshes
+  int entries,           // Count entries
+    size;                // Size of the arrays
   
 }; 
 typedef struct Object Object;
