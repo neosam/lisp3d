@@ -38,8 +38,8 @@ Object *newObject()
   object->vertices = (GLdouble*)malloc(sizeof(GLdouble)*OBJ_ENTRY*3);
   object->color = (GLdouble*)malloc(sizeof(GLdouble)*OBJ_ENTRY*3);
   object->faces = (GLint*)malloc(sizeof(GLint)*OBJ_ENTRY*3);
-  object->entries = 0;
-  object->size = OBJ_ENTRY;
+  object->ventries = object->fentries = 0;
+  object->vsize = object->fsize = OBJ_ENTRY;
 
   return object;
 }
@@ -85,4 +85,32 @@ Object *objectInit(char **list)
 char *objGetName(int index)
 {
   return getGlobalIndex(index)->name;
+}
+
+
+void objCheckArrays(Object *obj)
+{
+  
+}
+
+GLint objRegisterVertex(Object *obj,
+			GLdouble x,
+			GLdouble y,
+			GLdouble z)
+{
+  GLdouble *vertex = V(obj, obj->ventries), 
+    *color = C(obj, obj->ventries);
+
+  vertex[0] = x;
+  vertex[1] = y;
+  vertex[2] = z;
+
+  obj->ventries++;
+
+  objCheckArrays(obj);
+}
+
+int objAddFace(Object *obj, GLint v1, GLint v2, GLint v3)
+{
+
 }
