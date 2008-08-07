@@ -97,49 +97,6 @@ Object *quadInit(Object *obj, char **list)
   return (Object*) quad;
 }
 
-void quadDraw(Object *obj)
-{
-  Quad *quad = (Quad*) obj;
-  glBegin(GL_QUADS);
-  /* Front */
-  glColor3f(quad->r, quad->g, quad->b);
-  glVertex3f( quad->sizeX/2,  quad->sizeY/2, quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2,  quad->sizeY/2, quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2, -quad->sizeY/2, quad->sizeZ/2);
-  glVertex3f( quad->sizeX/2, -quad->sizeY/2, quad->sizeZ/2);
-
-  glVertex3f( quad->sizeX/2,  quad->sizeY/2, -quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2,  quad->sizeY/2, -quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2, -quad->sizeY/2, -quad->sizeZ/2);
-  glVertex3f( quad->sizeX/2, -quad->sizeY/2, -quad->sizeZ/2);
-
-  /* Side */
-  glVertex3f( quad->sizeX/2,  quad->sizeY/2,  quad->sizeZ/2);
-  glVertex3f( quad->sizeX/2,  quad->sizeY/2, -quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2,  quad->sizeY/2, -quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2,  quad->sizeY/2,  quad->sizeZ/2);
-
-  glVertex3f( quad->sizeX/2,  -quad->sizeY/2,  quad->sizeZ/2);
-  glVertex3f( quad->sizeX/2,  -quad->sizeY/2, -quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2,  -quad->sizeY/2, -quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2,  -quad->sizeY/2,  quad->sizeZ/2);
-
-  /* Topdown */
-  glVertex3f( quad->sizeX/2,  quad->sizeY/2,  quad->sizeZ/2);
-  glVertex3f( quad->sizeX/2, -quad->sizeY/2,  quad->sizeZ/2);
-  glVertex3f( quad->sizeX/2, -quad->sizeY/2, -quad->sizeZ/2);
-  glVertex3f( quad->sizeX/2,  quad->sizeY/2, -quad->sizeZ/2);
-
-  glVertex3f(-quad->sizeX/2,  quad->sizeY/2,  quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2, -quad->sizeY/2,  quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2, -quad->sizeY/2, -quad->sizeZ/2);
-  glVertex3f(-quad->sizeX/2,  quad->sizeY/2, -quad->sizeZ/2);
-
-
-  
-  glEnd();
-}
-
 void quadSizer(Object *obj)
 {
   Quad *quad = (Quad*) obj;
