@@ -166,8 +166,18 @@ double *quadGetRGB(int index)
 void quadSetRGB(int index, double r, double g, double b)
 {
   Quad *quad = (Quad *)getGlobalIndex(index);
+  Object *obj = (Object *)quad;
+  GLdouble *color;
+  int i;
   
   quad->r = r;
   quad->g = g;
   quad->b = b;
+
+  for (i = 0; i < obj->ventries; i++) {
+    color = C(obj, i);
+    color[0] = r;
+    color[1] = g;
+    color[2] = b;
+  }
 }
