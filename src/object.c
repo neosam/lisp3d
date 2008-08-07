@@ -36,7 +36,7 @@ Object *newObject()
 
   /* Initialize vertex attributes */
   object->vertices = (GLdouble*)malloc(sizeof(GLdouble)*OBJ_ENTRY*3);
-  object->color = (GLdouble*)malloc(sizeof(GLdouble)*OBJ_ENTRY*3);
+  object->colors = (GLdouble*)malloc(sizeof(GLdouble)*OBJ_ENTRY*3);
   object->faces = (GLint*)malloc(sizeof(GLint)*OBJ_ENTRY*3);
   object->ventries = object->fentries = 0;
   object->vsize = object->fsize = OBJ_ENTRY;
@@ -90,7 +90,7 @@ char *objGetName(int index)
 
 void objCheckArrays(Object *obj)
 {
-  
+  /* TODO */
 }
 
 GLint objRegisterVertex(Object *obj,
@@ -105,6 +105,10 @@ GLint objRegisterVertex(Object *obj,
   vertex[1] = y;
   vertex[2] = z;
 
+  color[0] = 0.0;
+  color[1] = 0.0;
+  color[2] = 0.0;
+
   obj->ventries++;
 
   objCheckArrays(obj);
@@ -112,5 +116,24 @@ GLint objRegisterVertex(Object *obj,
 
 int objAddFace(Object *obj, GLint v1, GLint v2, GLint v3)
 {
+  GLint *face = F(obj, obj->fentries);
 
+  face[0] = v1;
+  face[1] = v2;
+  face[2] = v3;
+
+  obj->fentries++;
+ 
+  objCheckArrays(obj);
+}
+
+void objDraw(Object *obj)
+{
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glEnableClientState(GL_COLOR_ARRAY);
+
+  glVertexPointer(3, GL_DOUBLE, 0, obj->vertices);
+  glColorPointer(3, GL_DOUBLE, 0, obj->colors);
+
+  glDrawElements(GL_TRIANGLES, obj->fentries*3, GL_DOUBLE, obj->faces);
 }
