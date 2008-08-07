@@ -55,6 +55,13 @@ GLint objRegisterVertex(Object *obj,
 			GLdouble x,
 			GLdouble y,
 			GLdouble z);
+GLint objRegisterVertexc(Object *obj,
+			 GLdouble x,
+			 GLdouble y,
+			 GLdouble z,
+			 GLdouble r,
+			 GLdouble g,
+			 GLdouble b);
 int objAddFace(Object *obj, GLint v1, GLint v2, GLint v3);
 void objDraw(Object *obj);
 

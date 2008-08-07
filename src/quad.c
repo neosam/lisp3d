@@ -23,17 +23,26 @@ void quadCreateVertices(Quad *quad)
   Object *obj = (Object *)quad;
   double sizeX = quad->sizeX,
     sizeY = quad->sizeY,
-    sizeZ = quad->sizeZ;
+    sizeZ = quad->sizeZ,
+    r = quad->r, g = quad->g, b = quad->b;
 
   int 
-    ftopleft =        objRegisterVertex(obj, -sizeX/2,  sizeY/2,  sizeZ/2), 
-    btopleft =        objRegisterVertex(obj, -sizeX/2,  sizeY/2, -sizeZ/2),
-    ftopright =       objRegisterVertex(obj,  sizeX/2,  sizeY/2,  sizeZ/2), 
-    btopright =       objRegisterVertex(obj,  sizeX/2,  sizeY/2, -sizeZ/2),
-    fbottomleft =     objRegisterVertex(obj, -sizeX/2, -sizeY/2,  sizeZ/2),
-    bbottomleft =     objRegisterVertex(obj, -sizeX/2, -sizeY/2, -sizeZ/2),
-    fbottomright =    objRegisterVertex(obj,  sizeX/2, -sizeY/2,  sizeZ/2), 
-    bbottomright =    objRegisterVertex(obj,  sizeX/2, -sizeY/2, -sizeZ/2);
+    ftopleft =        objRegisterVertexc(obj, -sizeX/2,  sizeY/2,  sizeZ/2,
+					r, g, b), 
+    btopleft =        objRegisterVertexc(obj, -sizeX/2,  sizeY/2, -sizeZ/2,
+					r, g, b),
+    ftopright =       objRegisterVertexc(obj,  sizeX/2,  sizeY/2,  sizeZ/2,
+					r, g, b), 
+    btopright =       objRegisterVertexc(obj,  sizeX/2,  sizeY/2, -sizeZ/2,
+					r, g, b),
+    fbottomleft =     objRegisterVertexc(obj, -sizeX/2, -sizeY/2,  sizeZ/2,
+					r, g, b),
+    bbottomleft =     objRegisterVertexc(obj, -sizeX/2, -sizeY/2, -sizeZ/2,
+					r, g, b),
+    fbottomright =    objRegisterVertexc(obj,  sizeX/2, -sizeY/2,  sizeZ/2,
+					r, g, b), 
+    bbottomright =    objRegisterVertexc(obj,  sizeX/2, -sizeY/2, -sizeZ/2,
+					r, g, b);
 
 #ifndef NDEBUG
   printf("DEBUG: %i %i %i %i %i %i %i %i\n",

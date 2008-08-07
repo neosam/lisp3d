@@ -116,6 +116,33 @@ GLint objRegisterVertex(Object *obj,
   return obj->ventries-1;
 }
 
+GLint objRegisterVertexc(Object *obj,
+			GLdouble x,
+			GLdouble y,
+			GLdouble z,
+			GLdouble r,
+			GLdouble g,
+			GLdouble b)
+{
+  GLdouble *vertex = V(obj, obj->ventries), 
+    *color = C(obj, obj->ventries);
+
+  vertex[0] = x;
+  vertex[1] = y;
+  vertex[2] = z;
+
+  color[0] = r;
+  color[1] = g;
+  color[2] = b;
+
+  obj->ventries++;
+
+  objCheckArrays(obj);
+
+  return obj->ventries-1;
+}
+
+
 int objAddFace(Object *obj, GLint v1, GLint v2, GLint v3)
 {
   GLint *face = F(obj, obj->fentries);
