@@ -112,6 +112,8 @@ GLint objRegisterVertex(Object *obj,
   obj->ventries++;
 
   objCheckArrays(obj);
+
+  return obj->ventries--;
 }
 
 int objAddFace(Object *obj, GLint v1, GLint v2, GLint v3)
@@ -125,6 +127,8 @@ int objAddFace(Object *obj, GLint v1, GLint v2, GLint v3)
   obj->fentries++;
  
   objCheckArrays(obj);
+
+  return obj->fentries--;
 }
 
 void objDraw(Object *obj)

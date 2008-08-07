@@ -17,9 +17,52 @@ Quad *newQuad(Object *obj)
   return quad;
 }
 
+void quadCreateVertices(Quad *quad)
+{
+  Object *obj = (Object *)quad;
+  double sizeX = quad->sizeX,
+    sizeY = quad->sizeY,
+    sizeZ = quad->sizeZ;
+
+  int 
+    ftopleft =        objRegisterVertex(obj, -sizeX/2,  sizeY/2,  sizeZ/2), 
+    btopleft =        objRegisterVertex(obj, -sizeX/2,  sizeY/2, -sizeZ/2),
+    ftopright =       objRegisterVertex(obj,  sizeX/2,  sizeY/2,  sizeZ/2), 
+    btopright =       objRegisterVertex(obj,  sizeX/2,  sizeY/2, -sizeZ/2),
+    fbottomleft =     objRegisterVertex(obj, -sizeX/2, -sizeY/2,  sizeZ/2),
+    bbottomleft =     objRegisterVertex(obj, -sizeX/2, -sizeY/2, -sizeZ/2),
+    fbottomright =    objRegisterVertex(obj,  sizeX/2, -sizeY/2,  sizeZ/2), 
+    bbottomright =    objRegisterVertex(obj,  sizeX/2, -sizeY/2, -sizeZ/2);
+
+  // Front
+  objAddFace(obj, ftopright, ftopleft, fbottomleft);
+  objAddFace(obj, ftopright, fbottomleft, fbottomright);
+
+  // Back
+  objAddFace(obj, btopright, bbottomleft, btopleft);
+  objAddFace(obj, btopright, bbottomright, bbottomleft);
+
+  // Left
+  objAddFace(obj, ftopleft, btopleft, bbottomleft);
+  objAddFace(obj, ftopleft, bbottomleft, fbottomleft);
+
+  // Right
+  objAddFace(obj, ftopright, bbottomright, btopright);
+  objAddFace(obj, ftopright, fbottomright, bbottomright);
+
+  // Up
+  objAddFace(obj, ftopright, btopleft, ftopleft);
+  objAddFace(obj, ftopright, btopright, btopleft);
+
+  // Down
+  objAddFace(obj, fbottomright, bbottomleft, fbottomleft);
+  objAddFace(obj, fbottomright, bbottomright, bbottomleft);
+}
+
 Object *quadInit(Object *obj, char **list)
 {
   Quad *quad;
+
   obj->type = QUAD;
   quad = newQuad(obj);
   elemList = list;
@@ -30,6 +73,8 @@ Object *quadInit(Object *obj, char **list)
   elemSetd("r", &quad->r);
   elemSetd("g", &quad->g);
   elemSetd("b", &quad->b);
+
+  quadCreateVertices(quad);
   
   return (Object*) quad;
 }
