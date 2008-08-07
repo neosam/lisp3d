@@ -1,6 +1,9 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
+#include <SDL_opengl.h>
+#define OBJ_ENTRY 256
+
 /* Standard object */
 struct Object {
   /* Type of object */
@@ -20,10 +23,17 @@ struct Object {
   /* Events */
   char *onDraw, *onInit;
 
-  /* Draw variables */
+  /* Sizer variables */
   double width, height, depth;
   double minX, minY, minZ;
   double maxX, maxY, maxZ;
+
+  /* Mesh settings */
+  GLdouble *vertices;
+  GLdouble *color;
+  GLdouble *faces;
+  int entries, size;
+  
 }; 
 typedef struct Object Object;
 
