@@ -31,7 +31,8 @@ struct Object {
 
   /* Mesh settings */
   GLdouble *vertices;        // Vertices of the mesh
-  GLdouble *colors;           // Vertex color
+  GLdouble *colors;          // Vertex color
+  GLdouble *normals;         // Vertex/Face normals
   GLint *faces;              // Triangles hold three meshes
   int ventries, fentries,    // Count entries
     vsize, fsize;            // Size of the arrays
@@ -42,6 +43,7 @@ typedef struct Object Object;
 /* Pixel access functions */
 #define V(obj, i) (obj->vertices + i*3)
 #define C(obj, i) (obj->colors + i*3)
+#define N(obj, i) (obj->normals + i*3)
 #define F(obj, i) (obj->faces + i*3)
 
 

@@ -38,6 +38,7 @@ Object *newObject()
   /* Initialize vertex attributes */
   object->vertices = (GLdouble*)malloc(sizeof(GLdouble)*OBJ_ENTRY*3);
   object->colors = (GLdouble*)malloc(sizeof(GLdouble)*OBJ_ENTRY*3);
+  object->normals = (GLdouble*)malloc(sizeof(GLdouble)*OBJ_ENTRY*3);
   object->faces = (GLint*)malloc(sizeof(GLint)*OBJ_ENTRY*3);
   object->ventries = object->fentries = 0;
   object->vsize = object->fsize = OBJ_ENTRY;

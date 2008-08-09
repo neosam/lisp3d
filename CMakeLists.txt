@@ -75,6 +75,7 @@ add_executable(lisp3d
 	src/lua/lmem.c      
 	src/lua/lparser.c   
 	src/lua/ltablib.c  
-	src/lua/print.c)
+	src/lua/print.c
+	src/geo3d/geo3d.c)
 
 install(TARGETS lisp3d DESTINATION bin)
