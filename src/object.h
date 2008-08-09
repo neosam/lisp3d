@@ -27,6 +27,7 @@ struct Object {
   double width, height, depth;
   double minX, minY, minZ;
   double maxX, maxY, maxZ;
+  int sized;
 
   /* Mesh settings */
   GLdouble *vertices;        // Vertices of the mesh

@@ -32,6 +32,7 @@ Object *newObject()
   object->maxY = 0.0;
   object->minZ = 0.0;
   object->maxZ = 0.0;
+  object->sized = 0;
 
 
   /* Initialize vertex attributes */
@@ -93,6 +94,49 @@ void objCheckArrays(Object *obj)
   /* TODO */
 }
 
+void objDoSizer(Object *obj, GLdouble x, GLdouble y, GLdouble z)
+{
+  switch (obj->sized) {
+  case 0:
+    obj->minX = obj->maxX = x;
+    obj->minY = obj->maxY = y;
+    obj->minZ = obj->maxZ = z;
+    obj->sized = 1;
+    break;
+  case 1:
+    if (x < obj->minX)
+      obj->minX = x;
+    if (x > obj->maxX)
+      obj->maxX = x;
+    
+    if (y < obj->minY)
+      obj->minY = y;
+    if (y > obj->maxY)
+      obj->maxY = y;
+    
+    if (z < obj->minZ)
+      obj->minZ = z;
+    if (z > obj->maxZ)
+      obj->maxZ = z;
+    break;
+  }
+  
+  obj->width = obj->maxX - obj->minX;
+  obj->height = obj->maxY - obj->minY;
+  obj->depth = obj->maxZ - obj->minZ;
+
+
+  assert(obj->width >= 0.0);
+  assert(obj->height >= 0.0);
+  assert(obj->depth >= 0.0);
+  assert(obj->minX <= x);
+  assert(obj->maxX >= x);
+  assert(obj->minY <= y);
+  assert(obj->maxY >= y);
+  assert(obj->minZ <= z);
+  assert(obj->maxZ >= z);
+}
+
 GLint objRegisterVertex(Object *obj,
 			GLdouble x,
 			GLdouble y,
@@ -110,6 +154,8 @@ GLint objRegisterVertex(Object *obj,
   color[2] = 0.0;
 
   obj->ventries++;
+
+  objDoSizer(obj, x, y, z);
 
   objCheckArrays(obj);
 
@@ -136,6 +182,8 @@ GLint objRegisterVertexc(Object *obj,
   color[2] = b;
 
   obj->ventries++;
+
+  objDoSizer(obj, x, y, z);
 
   objCheckArrays(obj);
 

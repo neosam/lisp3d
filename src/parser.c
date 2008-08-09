@@ -14,7 +14,8 @@ Object *sizing(Object *obj)
   for (i = 0; obj->childs[i] != NULL; i++)
     sizing(obj->childs[i]);
 
-  if (obj->type > 0 && obj->type < CAMERA | obj->type >= LASTELEM)
+  if ((obj->type > 0 && obj->type < CAMERA | obj->type >= LASTELEM) &&
+      taglist[obj->type].sizerfunc != NULL)
     taglist[obj->type].sizerfunc(obj);
 
   return obj;
