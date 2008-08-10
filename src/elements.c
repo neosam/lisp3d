@@ -61,7 +61,7 @@ void initElements()
   taglist = (struct _tags*) malloc(sizeof(struct _tags) * max);
   registerTag("object", NULL, NULL, NULL, NULL);
   registerTag("quad", quadInit, objDraw, NULL, NULL);
-  registerTag("triangle", triangleInit, triangleDraw, triangleSizer, NULL);
+  registerTag("triangle", triangleInit, objDraw, NULL, NULL);
   registerTag("rect", rectInit, rectDraw, rectSizer, NULL);
   registerTag("layout-inner", layoutInnerInit, layoutInnerDraw, layoutInnerSizer, NULL);
   registerTag("layout-x", layoutXInit, layoutXDraw, layoutXSizer, NULL);

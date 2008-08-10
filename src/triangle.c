@@ -29,6 +29,21 @@ Triangle *newTriangle(Object *obj)
   return tri;
 }
 
+void triangleCreateVertices(Triangle *tri)
+{
+  Object *obj = (Object*) tri;
+  GLdouble r = tri->r,
+    g = tri->g,
+    b = tri->b;
+  int p1 = objRegisterVertexc(obj, tri->x1, tri->y1, tri->z1, r, g, b),
+    p2 = objRegisterVertexc(obj, tri->x2, tri->y2, tri->z2, r, g, b),
+    p3 = objRegisterVertexc(obj, tri->x3, tri->y3, tri->z3, r, g, b);
+
+  objAddFace(obj, p1, p2, p3);
+
+  assert(obj->ventries == 3);
+  assert(obj->fentries == 1);
+}
 
 Object *triangleInit(Object *obj, char **list)
 {
@@ -49,64 +64,9 @@ Object *triangleInit(Object *obj, char **list)
   elemSetd("g", &dst->g);
   elemSetd("b", &dst->b);
 
+  triangleCreateVertices(dst);
+
   return (Object *)dst;
-}
-
-
-void triangleDraw(Object *obj)
-{
-  Triangle *tri = (Triangle *)obj;
-  
-  glBegin(GL_TRIANGLES);
-  glColor3f(tri->r, tri->g, tri->b);
-
-  glVertex3f(tri->x1, tri->y1, tri->z1);
-  glVertex3f(tri->x2, tri->y2, tri->z2);
-  glVertex3f(tri->x3, tri->y3, tri->z3);
-  
-  glEnd();
-}
-
-void triangleSizer(Object *obj)
-{
-  Triangle *tri = (Triangle*) obj;
-
-  double minBuffer = tri->x1, 
-    maxBuffer = tri->x1;
-
-  if (tri->x2 < minBuffer)
-    minBuffer = tri->x2;
-  else
-    maxBuffer = tri->x2;
-
-  obj->minX = (minBuffer < tri->x3)? minBuffer: tri->x3;
-  obj->maxX = (maxBuffer > tri->x3)? maxBuffer: tri->x3;
-
-  minBuffer = tri->y1;
-  maxBuffer = tri->y1;
-
-  if (tri->y2 < minBuffer)
-    minBuffer = tri->y2;
-  else
-    maxBuffer = tri->y2;
-
-  obj->minY = (minBuffer < tri->y3)? minBuffer: tri->y3;
-  obj->maxY = (maxBuffer > tri->y3)? maxBuffer: tri->y3;
-
-  minBuffer = tri->z1;
-  maxBuffer = tri->z1;
-
-  if (tri->z2 < minBuffer)
-    minBuffer = tri->z2;
-  else
-    maxBuffer = tri->z2;
-
-  obj->minZ = (minBuffer < tri->z3)? minBuffer: tri->z3;
-  obj->maxZ = (maxBuffer > tri->z3)? maxBuffer: tri->z3;
-
-  obj->width = obj->maxX - obj->minX;
-  obj->height = obj->maxY - obj->minY;
-  obj->depth = obj->maxZ - obj->minZ;
 }
 
 
