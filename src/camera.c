@@ -6,7 +6,7 @@
 #include "globalindex.h"
 #include "parser.h"
 
-Camera *cam;
+Camera *cam = NULL;
 
 Camera *newCamera(Object *obj)
 {

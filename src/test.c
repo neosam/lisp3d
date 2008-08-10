@@ -67,6 +67,14 @@ void game()
   }
 }
 
+void checkCamera()
+{
+  if (cam == NULL) {
+    fprintf(stderr, "ERROR: No camera defined - abort\n");
+    exit(1);
+  }
+}
+
 int main(int argc, char **argv)
 {
   if (argc==1) {
@@ -94,6 +102,7 @@ int main(int argc, char **argv)
   printf("done\n");
 
   printf("Start Game!\n");
+  checkCamera();
   game();
 
   return 0;
