@@ -220,11 +220,15 @@ int objAddFace(Object *obj, GLint v1, GLint v2, GLint v3)
 
 void objDraw(Object *obj)
 {
+  int i;
   glEnableClientState(GL_VERTEX_ARRAY);
   glEnableClientState(GL_COLOR_ARRAY);
 
   glVertexPointer(3, GL_DOUBLE, 0, obj->vertices);
   glColorPointer(3, GL_DOUBLE, 0, obj->colors);
 
-  glDrawElements(GL_TRIANGLES, obj->fentries*3, GL_UNSIGNED_INT, obj->faces);
+  for (i = 0; i < obj->fentries; i++) {
+    glNormal3dv(N(obj, i));
+    glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, F(obj, i));
+  }
 }
