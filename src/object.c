@@ -195,10 +195,17 @@ GLint objRegisterVertexc(Object *obj,
 int objAddFace(Object *obj, GLint v1, GLint v2, GLint v3)
 {
   GLint *face = F(obj, obj->fentries);
+  GLdouble tmp1[3], tmp2[3];
 
   face[0] = v1;
   face[1] = v2;
   face[2] = v3;
+
+  /* Calculate face normal */
+  vertexXvertex3(N(obj, obj->fentries),
+  		subVertex3(tmp1, V(obj, v1), V(obj, v2)),
+  		subVertex3(tmp2, V(obj, v2), V(obj, v3)));
+  
 
   obj->fentries++;
  

@@ -27,12 +27,14 @@ vertex setVertex(vertex, GLdouble, GLdouble, GLdouble, GLdouble);
 
 /* Cross products */
 vertex vertexXvertex(vertex, vertex, vertex);
+vertex vertexXvertex3(vertex, vertex, vertex);
 vertex matrixXvertex(vertex, matrix, vertex);
 matrix matrixXmatrix(matrix, matrix, matrix);
 
 /* vector functions */
 vertex addVertex(vertex, vertex, vertex);
 vertex subVertex(vertex, vertex, vertex);
+vertex subVertex3(vertex, vertex, vertex);
 vertex normalVertex(vertex, vertex);
 vertex multVertex(vertex, vertex, GLdouble);
 GLdouble lengthVertex(vertex);

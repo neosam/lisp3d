@@ -69,6 +69,14 @@ vertex vertexXvertex(vertex newver, vertex ver1, vertex ver2)
 
     return newver;
 }
+vertex vertexXvertex3(vertex newver, vertex ver1, vertex ver2)
+{
+    newver[0] = ver1[1] * ver2[2] - ver1[2] * ver2[1];
+    newver[1] = ver1[2] * ver2[0] - ver1[0] * ver2[2];
+    newver[2] = ver1[0] * ver2[1] - ver1[1] * ver2[0];
+
+    return newver;
+}
 
 vertex matrixXvertex(vertex newver, matrix mat, vertex ver)
 {
@@ -135,6 +143,22 @@ vertex subVertex(vertex newver, vertex ver1, vertex ver2)
 
     return newver;
 }
+
+vertex subVertex3(vertex newver, vertex ver1, vertex ver2)
+{
+    if (newver == ver1)
+        newver = v_buffer;
+    newver[0] = ver1[0] - ver2[0];
+    newver[1] = ver1[1] - ver2[1];
+    newver[2] = ver1[2] - ver2[2];
+    if (newver == v_buffer) {
+        ver1 = (vertex) memcpy(ver1, newver, sizeof(GLdouble) * 4);
+        newver = ver1;
+    }
+
+    return newver;
+}
+
 
 vertex normalVertex(vertex newver, vertex ver)
 {
