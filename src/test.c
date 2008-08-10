@@ -20,18 +20,19 @@ void initVideo()
   glOrtho(-10.0, 10.0, -10.0, 10.0, -10.0, 10.0);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  float mat_specular[] = {1.0, 1.0, 1.0, 1.0};
-  float mat_shininess[] = {50.0};
-  float light_position[] = {1.0, 1.0, 1.0, 0.0};
+  float mat_specular[] = {.2, .2, .2, 1.0};
+  float mat_ambient[] = {.3, .3, .3, 1.0};
+  float light_position[] = {5.0, 5.0, 15.0, 0.0};
   glShadeModel(GL_SMOOTH);
   glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-  //glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+  glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
   glLightfv(GL_LIGHT0, GL_POSITION, light_position);
   glEnable(GL_CULL_FACE);
 
   glEnable(GL_LIGHTING);
   glEnable(GL_LIGHT0);
-
+  glColorMaterial(GL_FRONT, GL_DIFFUSE);
+  glEnable(GL_COLOR_MATERIAL);
 }
 
 
