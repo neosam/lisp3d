@@ -31,6 +31,21 @@ Rect *newRect(Object *obj)
   return rect;
 }
 
+void rectCreateVertices(Rect *rect)
+{
+  Object *obj = (Object *)rect;
+  GLdouble r = rect->r,
+    g = rect->g,
+    b = rect->b;
+  int v1 = objRegisterVertexc(obj, rect->x1, rect->y1, rect->z1, r, g, b),
+    v2 = objRegisterVertexc(obj, rect->x2, rect->y2, rect->z2, r, g, b),
+    v3 = objRegisterVertexc(obj, rect->x3, rect->y3, rect->z3, r, g, b),
+    v4 = objRegisterVertexc(obj, rect->x4, rect->y4, rect->z4, r, g, b);
+
+  objAddFace(obj, v1, v2, v3);
+  objAddFace(obj, v1, v3, v4);
+}
+
 Object *rectInit(Object *obj, char **list)
 {
   Rect *rect;
@@ -57,6 +72,8 @@ Object *rectInit(Object *obj, char **list)
   elemSetd("r", &rect->r);
   elemSetd("g", &rect->g);
   elemSetd("b", &rect->b);
+
+  rectCreateVertices(rect);
 
   return (Object *) rect;
 }

@@ -62,7 +62,7 @@ void initElements()
   registerTag("object", NULL, NULL, NULL, NULL);
   registerTag("quad", quadInit, objDraw, NULL, NULL);
   registerTag("triangle", triangleInit, objDraw, NULL, NULL);
-  registerTag("rect", rectInit, rectDraw, rectSizer, NULL);
+  registerTag("rect", rectInit, objDraw, NULL, NULL);
   registerTag("layout-inner", layoutInnerInit, layoutInnerDraw, layoutInnerSizer, NULL);
   registerTag("layout-x", layoutXInit, layoutXDraw, layoutXSizer, NULL);
   registerTag("layout-y", layoutYInit, layoutYDraw, layoutYSizer, NULL);
