@@ -1,2 +1,6 @@
-(quad (sizeX="1.0" sizeY="1.0" sizeZ="1.0"))
+(layout-inner ()
+  (quad (sizeX="1.0" sizeY="1.0" sizeZ="1.0" g="1"))
+  (camera (x="0.0" y="2.0" z="4.0"
+          frontX="0.0" frontY="0.0" frontZ="0.0"))
+)
 
