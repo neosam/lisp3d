@@ -73,8 +73,8 @@ void quadCreateVertices(Quad *quad)
   objAddFace(obj, ftopright, btopright, btopleft);
 
   // Down
-  objAddFace(obj, fbottomright, bbottomleft, fbottomleft);
-  objAddFace(obj, fbottomright, bbottomright, bbottomleft);
+  objAddFace(obj, fbottomright, fbottomleft, bbottomleft);
+  objAddFace(obj, fbottomright, bbottomleft, bbottomright);
 }
 
 Object *quadInit(Object *obj, char **list)
