@@ -30,12 +30,12 @@ struct Object {
   int sized;
 
   /* Mesh settings */
-  GLdouble *vertices;        // Vertices of the mesh
-  GLdouble *colors;          // Vertex color
-  GLdouble *normals;         // Vertex/Face normals
-  GLint *faces;              // Triangles hold three meshes
-  int ventries, fentries,    // Count entries
-    vsize, fsize;            // Size of the arrays
+  GLdouble *vertices;        /* Vertices of the mesh */
+  GLdouble *colors;          /* Vertex color */
+  GLdouble *normals;         /* Vertex/Face normals */
+  GLint *faces;              /* Triangles hold three meshes */
+  int ventries, fentries,    /* Count entries */
+    vsize, fsize;            /* Size of the arrays */
   
 }; 
 typedef struct Object Object;

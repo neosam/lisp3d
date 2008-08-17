@@ -7,6 +7,10 @@
 #include <string.h>
 #include <SDL_opengl.h>
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 typedef GLdouble *vertex;
 typedef GLdouble *matrix;
 

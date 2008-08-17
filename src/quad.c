@@ -52,27 +52,27 @@ void quadCreateVertices(Quad *quad)
 	 fbottomright, bbottomright);
 #endif
 
-  // Front
+  /* Front */
   objAddFace(obj, ftopright, ftopleft, fbottomleft);
   objAddFace(obj, ftopright, fbottomleft, fbottomright);
 
-  // Back
+  /* Back */
   objAddFace(obj, btopright, bbottomleft, btopleft);
   objAddFace(obj, btopright, bbottomright, bbottomleft);
 
-  // Left
+  /* Left */
   objAddFace(obj, ftopleft, btopleft, bbottomleft);
   objAddFace(obj, ftopleft, bbottomleft, fbottomleft);
 
-  // Right
+  /* Right */
   objAddFace(obj, ftopright, bbottomright, btopright);
   objAddFace(obj, ftopright, fbottomright, bbottomright);
 
-  // Up
+  /* Up */
   objAddFace(obj, ftopright, btopleft, ftopleft);
   objAddFace(obj, ftopright, btopright, btopleft);
 
-  // Down
+  /* Down */
   objAddFace(obj, fbottomright, fbottomleft, bbottomleft);
   objAddFace(obj, fbottomright, bbottomleft, bbottomright);
 }
