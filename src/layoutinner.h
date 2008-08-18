@@ -4,7 +4,7 @@
 #include "object.h"
 
 struct LayoutInner {
-  Object obj;
+	Object obj;
 };
 typedef struct LayoutInner LayoutInner;
 

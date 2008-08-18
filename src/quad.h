@@ -5,11 +5,11 @@
 
 /* Quad object */
 struct Quad {
-  Object obj;
-
-  /* Dimensions */
-  double sizeX, sizeY, sizeZ;
-  double r, g, b;
+	Object obj;
+	
+	/* Dimensions */
+	double sizeX, sizeY, sizeZ;
+	double r, g, b;
 };
 typedef struct Quad Quad;
 

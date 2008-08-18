@@ -4,9 +4,9 @@
 #include "object.h"
 
 struct Usertag {
-  Object obj;
-
-  Object *link;
+	Object obj;
+	
+	Object *link;
 };
 typedef struct Usertag Usertag;
 

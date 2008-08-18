@@ -5,17 +5,14 @@
 #include "debug.h"
 
 void draw(Object *obj) {
-  int i;
-
-  assert (obj!=NULL);
-  if (obj->onDraw != NULL)
-    execEvent(obj->onDraw, obj);
-
-  if (obj->type > 0 && obj->type < CAMERA || obj->type >= LASTELEM) {
-    assert (taglist[obj->type].drawfunc);
-    taglist[obj->type].drawfunc(obj);
-  }
-
-  /*  for (i = 0; obj->childs[i] != NULL; i++)
-      draw(obj->childs[i]); */
+	int i;
+	
+	assert (obj!=NULL);
+	if (obj->onDraw != NULL)
+		execEvent(obj->onDraw, obj);
+	
+	if (obj->type > 0 && obj->type < CAMERA || obj->type >= LASTELEM) {
+		assert (taglist[obj->type].drawfunc);
+		taglist[obj->type].drawfunc(obj);
+	}
 }

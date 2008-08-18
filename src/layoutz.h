@@ -4,11 +4,11 @@
 #include "object.h"
 
 struct LayoutZ {
-  Object obj;
-  double offsetx[255];
-  double offsety[255];
-  double offsetz[255];
-  int childs;
+	Object obj;
+	double offsetx[255];
+	double offsety[255];
+	double offsetz[255];
+	int childs;
 };
 typedef struct LayoutZ LayoutZ;
 

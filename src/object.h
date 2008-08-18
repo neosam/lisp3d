@@ -6,37 +6,37 @@
 
 /* Standard object */
 struct Object {
-  /* Type of object */
-  int type;
-  int id;
-  struct Object *parent;
-  struct Object **childs;
-  
-  /* Name */
-  char *name;
-  int nameID;
-
-  /* Class */
-  char *class;
-  int classID;
-
-  /* Events */
-  char *onDraw, *onInit;
-
-  /* Sizer variables */
-  double width, height, depth;
-  double minX, minY, minZ;
-  double maxX, maxY, maxZ;
-  int sized;
-
-  /* Mesh settings */
-  GLdouble *vertices;        /* Vertices of the mesh */
-  GLdouble *colors;          /* Vertex color */
-  GLdouble *normals;         /* Vertex/Face normals */
-  GLint *faces;              /* Triangles hold three meshes */
-  int ventries, fentries,    /* Count entries */
-    vsize, fsize;            /* Size of the arrays */
-  
+	/* Type of object */
+	int type;
+	int id;
+	struct Object *parent;
+	struct Object **childs;
+	
+	/* Name */
+	char *name;
+	int nameID;
+	
+	/* Class */
+	char *class;
+	int classID;
+	
+	/* Events */
+	char *onDraw, *onInit;
+	
+	/* Sizer variables */
+	double width, height, depth;
+	double minX, minY, minZ;
+	double maxX, maxY, maxZ;
+	int sized;
+	
+	/* Mesh settings */
+	GLdouble *vertices;              /* Vertices of the mesh */
+	GLdouble *colors;                /* Vertex color */
+	GLdouble *normals;               /* Vertex/Face normals */
+	GLint *faces;                    /* Triangles hold three meshes */
+	int ventries, fentries,          /* Count entries */
+		vsize, fsize;            /* Size of the arrays */
+	
 }; 
 typedef struct Object Object;
 

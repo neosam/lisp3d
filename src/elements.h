@@ -1,8 +1,3 @@
-/* OBJECT
- * +QUAD
- * +CODE
- */
-
 #ifndef ELEMENTS_H
 #define ELEMENTS_H
 
@@ -20,11 +15,11 @@
 #define CQUAD(x) ((Quad*)(x))
 
 struct _tags {
-  char *name;
-  Object *(*initfunc)(Object *obj, char **list);
-  void (*drawfunc)(Object *obj);
-  void (*sizerfunc)(Object *obj);
-  Object *ref;
+	char *name;
+	Object *(*initfunc)(Object *obj, char **list);
+	void (*drawfunc)(Object *obj);
+	void (*sizerfunc)(Object *obj);
+	Object *ref;
 };
 
 extern struct _tags *taglist;
@@ -32,17 +27,17 @@ extern struct _tags *taglist;
 
 /* Build in types */
 enum ObjType {
-  OBJECT = 0,
-  QUAD,
-  TRIANGLE,
-  RECT,
-  LAYOUT_INNER,
-  LAYOUT_X,
-  LAYOUT_Y,
-  LAYOUT_Z,
-  CAMERA,
-  CODE,
-  LASTELEM
+	OBJECT = 0,
+	QUAD,
+	TRIANGLE,
+	RECT,
+	LAYOUT_INNER,
+	LAYOUT_X,
+	LAYOUT_Y,
+	LAYOUT_Z,
+	CAMERA,
+	CODE,
+	LASTELEM
 };
 
 void registerTag(char *name, Object*(*initfunc)(Object *obj, char **list),
