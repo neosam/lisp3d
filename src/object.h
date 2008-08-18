@@ -18,6 +18,29 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+/* 
+ * Handler for object
+ *
+ * An object is the base of every element in lisp3d.  It contains important
+ * attributes eg the type, pointer to parent and childs, sizers, events
+ * and vertices.  Every element has to set object as the first attribute
+ * (no pointer):
+ *
+ *         struct MyElement{
+ *                 Object obj;
+ *                 ...
+ *         };
+ *         typedef MyElement MyElement;
+ *
+ * So access object attributes is very simple:
+ *
+ *         ((Object*)aElement)->parent = NULL;
+ *
+ * You also can expand an object to a element:
+ *
+ *         MyElement *elem = REALLOC(MyElement, obj);
+ *
+ */
 
 #ifndef OBJECT_H
 #define OBJECT_H
@@ -53,7 +76,7 @@ struct Object {
 	/* Mesh settings */
 	GLdouble *vertices;              /* Vertices of the mesh */
 	GLdouble *colors;                /* Vertex color */
-	GLdouble *normals;               /* Vertex/Face normals */
+	GLdouble *normals;               /* Face normals */
 	GLint *faces;                    /* Triangles hold three meshes */
 	int ventries, fentries,          /* Count entries */
 		vsize, fsize;            /* Size of the arrays */
@@ -61,7 +84,9 @@ struct Object {
 }; 
 typedef struct Object Object;
 
-/* Pixel access functions */
+/* 
+ * Macros for vertex access
+ */
 #define V(obj, i) (obj->vertices + i*3)
 #define C(obj, i) (obj->colors + i*3)
 #define N(obj, i) (obj->normals + i*3)
@@ -73,7 +98,16 @@ Object *objectInit(char **list);
 
 char *objGetName(int index);
 
-/* Object mesh manipulation functions */
+/* 
+ * Object mesh manipulation functions
+ * 
+ * objCheckArrays reallocs memory if neccessery.
+ *
+ * objRegisterVertex and objRegisterVertexc adds a vertex to the vertex list 
+ * of the array.
+ *
+ * objAddFace adds a face to the vertex and calculates an face normal.
+ */
 void objCheckArrays(Object *obj);
 GLint objRegisterVertex(Object *obj,
 			GLdouble x,
