@@ -5,10 +5,11 @@
 #include "parser.h"
 #include "graphics.h"
 #include "debug.h"
+#include "misc.h"
 
 LayoutInner *newLayoutInner(Object *obj)
 {
-	LayoutInner *lay = (LayoutInner*) realloc(obj, sizeof(LayoutInner));
+	LayoutInner *lay = REALLOC(LayoutInner, obj);
 	
 	return lay;
 }

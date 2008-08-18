@@ -6,10 +6,11 @@
 #include "parser.h"
 #include "elements.h"
 #include "debug.h"
+#include "misc.h"
 
 Object *newObject()
 {
-	Object *object = (Object *) malloc(sizeof(Object));
+	Object *object = MALLOC(Object);
 	
 	object->type = 0;
 	
@@ -36,10 +37,10 @@ Object *newObject()
 	
 	
 	/* Initialize vertex attributes */
-	object->vertices = (GLdouble*)malloc(sizeof(GLdouble)*OBJ_ENTRY*3);
-	object->colors = (GLdouble*)malloc(sizeof(GLdouble)*OBJ_ENTRY*3);
-	object->normals = (GLdouble*)malloc(sizeof(GLdouble)*OBJ_ENTRY*3);
-	object->faces = (GLint*)malloc(sizeof(GLint)*OBJ_ENTRY*3);
+	object->vertices = MALLOCN(GLdouble, OBJ_ENTRY*3);
+	object->colors = MALLOCN(GLdouble, OBJ_ENTRY*3);
+	object->normals = MALLOCN(GLdouble, OBJ_ENTRY*3);
+	object->faces = MALLOCN(GLint, OBJ_ENTRY*3);
 	object->ventries = object->fentries = 0;
 	object->vsize = object->fsize = OBJ_ENTRY;
 

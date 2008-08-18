@@ -4,10 +4,11 @@
 #include "rect.h"
 #include "parser.h"
 #include "elements.h"
+#include "misc.h"
 
 Rect *newRect(Object *obj)
 {
-	Rect *rect = (Rect*) realloc(obj, sizeof(Rect));
+	Rect *rect = REALLOC(Rect, obj);
 
 	rect->x1 = 0.0;
 	rect->x2 = 0.0;

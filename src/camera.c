@@ -5,12 +5,13 @@
 #include "camera.h"
 #include "globalindex.h"
 #include "parser.h"
+#include "misc.h"
 
 Camera *cam = NULL;
 
 Camera *newCamera(Object *obj)
 {
-	Camera *result = (Camera *) realloc(obj, sizeof(Camera));
+	Camera *result = REALLOC(Camera, obj);
 	
 	result->x = 0.0;
 	result->y = 0.0;

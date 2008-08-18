@@ -6,10 +6,11 @@
 #include "globalindex.h"
 #include "parser.h"
 #include "debug.h"
+#include "misc.h"
 
 Triangle *newTriangle(Object *obj)
 {
-	Triangle *tri = (Triangle *) realloc(obj, sizeof(Triangle));
+	Triangle *tri = REALLOC(Triangle, obj);
 	
 	tri->x1 = 0.0;
 	tri->x2 = 0.0;
@@ -73,7 +74,7 @@ Object *triangleInit(Object *obj, char **list)
 
 double *triangleGetRGB(int index)
 {
-	double *res = (double*) malloc(sizeof(double)*3);
+	double *res = MALLOCN(double, 3);
 	Triangle *tri = (Triangle *)getGlobalIndex(index);
 	
 	res[0] = tri->r;

@@ -6,6 +6,7 @@
 #include "elements.h"
 #include "globalindex.h"
 #include "debug.h"
+#include "misc.h"
 
 
 /*
@@ -37,7 +38,7 @@ void registerTag(char *name, Object*(*initfunc)(Object *obj, char **list),
 	count++;
 	if (count == max) {
 		max += 256;
-		taglist = (struct _tags*) realloc(taglist, sizeof(struct _tags) * max);
+		taglist = REALLOCN(struct _tags, taglist, max);
 	} 
 	taglist[count].name = NULL;
 	taglist[count].initfunc = NULL;
@@ -50,7 +51,7 @@ void registerTag(char *name, Object*(*initfunc)(Object *obj, char **list),
 void initElements()
 {    
 	DMSG("Starting init elements\n");
-	taglist = (struct _tags*) malloc(sizeof(struct _tags) * max);
+	taglist = MALLOCN(struct _tags, max);
 	registerTag("object", NULL, NULL, NULL, NULL);
 	registerTag("quad", quadInit, objDraw, NULL, NULL);
 	registerTag("triangle", triangleInit, objDraw, NULL, NULL);

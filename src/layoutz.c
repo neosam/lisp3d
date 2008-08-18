@@ -6,10 +6,11 @@
 #include "elements.h"
 #include "parser.h"
 #include "graphics.h"
+#include "misc.h"
 
 LayoutZ *newLayoutZ(Object *obj)
 {
-	LayoutZ *lay = (LayoutZ*) realloc(obj, sizeof(LayoutZ));
+	LayoutZ *lay = REALLOC(LayoutZ, obj);
 	
 	return lay;
 }

@@ -6,6 +6,7 @@
 #include "lua.h"
 #include "debug.h"
 #include "globalindex.h"
+#include "misc.h"
 
 Object *sizing(Object *obj)
 {
@@ -40,7 +41,7 @@ char **parseProperties(char *name, FILE *file)
 	char c;
 	int listPos = 2,
 		stringPos = 0;
-	char **list = (char **)malloc(sizeof(char*) * 255);
+	char **list = MALLOCN(char*, 255);
 	int state = 0;
 	/* State:
 	   0 = wait for param
@@ -56,8 +57,8 @@ char **parseProperties(char *name, FILE *file)
 		case 0:
 			if (isLetter(c)) {
 				state = 1;
-				list[listPos] = (char*) malloc(sizeof(char) * 255);
-				list[listPos+1] = (char*) malloc(sizeof(char) * 255);
+				list[listPos] = MALLOCN(char, 255);
+				list[listPos+1] = MALLOCN(char, 255);
 				list[listPos][0] = c;
 				stringPos = 1;
 			}
@@ -185,11 +186,11 @@ Object *parseFile(FILE *file, Object *parent)
 	int state = 0;
 	int c;
 	char **propertyList;
-	char *name = (char *) malloc(sizeof(char) * 255);
+	char *name = MALLOCN(char, 255);
 	int i = 0;
 	int iChild = 0;
 	Object **childs;
-	childs = (Object **) malloc(sizeof(Object) * 255);
+	childs = MALLOCN(Object *, 255);
 	Object *obj;
 	
 	DMSG("parse file\n");

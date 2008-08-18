@@ -6,10 +6,11 @@
 #include "globalindex.h"
 #include "parser.h"
 #include "debug.h"
+#include "misc.h"
 
 Quad *newQuad(Object *obj)
 {
-	Quad *quad = (Quad *) realloc(obj, sizeof(Quad));
+	Quad *quad = REALLOC(Quad, obj);
 	
 	quad->sizeX = 0.0;
 	quad->sizeY = 0.0;
@@ -124,7 +125,7 @@ void quadSizer(Object *obj)
 
 double *quadGetRGB(int index)
 {
-	double *res = (double*) malloc(sizeof(double)*3);
+	double *res = MALLOCN(double, 3);
 	Quad *quad = (Quad *)getGlobalIndex(index);
 	
 	res[0] = quad->r;

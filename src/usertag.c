@@ -6,11 +6,12 @@
 #include "elements.h"
 #include "parser.h"
 #include "graphics.h"
+#include "misc.h"
 
 
 Usertag *newUsertag(Object *obj)
 {
-	Usertag *utag = (Usertag*) malloc(sizeof(Usertag));
+	Usertag *utag = MALLOC(Usertag);
 	
 	DMSG("Create new Usertag\n");
 	utag->obj = *obj;

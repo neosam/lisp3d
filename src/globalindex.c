@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "globalindex.h"
 #include "debug.h"
+#include "misc.h"
 
 #define MINSIZE 256
 #define RESIZE 256
@@ -13,7 +14,7 @@ Object **globalIndex;
 void initGlobalIndex()
 {
 	DMSG("GlobalIndex init\n");
-	globalIndex = (Object **) malloc(sizeof(Object) * MINSIZE);
+	globalIndex = MALLOCN(Object*, MINSIZE);
 	size = MINSIZE;
 	pos = 0;
 	DMSG("GlobalIndex init done\n");
@@ -24,7 +25,7 @@ void insertGlobalIndex(Object *obj)
 	DMSG("GlobalIndex insert\n");
 	if (pos == size-1) {
 		size += RESIZE;
-		globalIndex = (Object **) realloc((void *)globalIndex, size);
+		globalIndex = REALLOCN(Object*, globalIndex, size);
 	}
 	
 	globalIndex[pos] = obj;
