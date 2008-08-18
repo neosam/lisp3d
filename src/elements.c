@@ -32,7 +32,7 @@
 /*
  * Taglist must be in the same order as enum 
  * ObjType in elements.h
- * If not, the wrong object will be drawn ;)  
+ * If not, the engine will draw the wrong object ;)  
  */
 
 /* 

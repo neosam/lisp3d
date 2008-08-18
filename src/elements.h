@@ -18,9 +18,16 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+/*
+ * This file handles the whole elements which exist in lisp3d
+ */
+
 #ifndef ELEMENTS_H
 #define ELEMENTS_H
 
+/*
+ * Load all elements
+ */
 #include "object.h"
 #include "quad.h"
 #include "camera.h"
@@ -34,6 +41,26 @@
 
 #define CQUAD(x) ((Quad*)(x))
 
+
+/*
+ * The taglist is an array that connects an element with functions.
+ *
+ * There are three functions now:
+ *         - initfunc,
+ *         - drawfunc and
+ *         - sizerfuc
+ *
+ * initfunc is called by the parser after the element type is detected.
+ * That function should allocate memory and should set the values.
+ * If you set the vertex and face data in this function there will be no
+ * need to create a display and sizer function.
+ *
+ * drawfunc is called if the element should be drawn.  If you used vertex
+ * and face data in initfunc you can pass objDraw
+ * 
+ * sizerfunc set the objectattributes min*, max*, width, height and depth.
+ * These attributes are needed by the layouter.
+ */
 struct _tags {
 	char *name;
 	Object *(*initfunc)(Object *obj, char **list);
@@ -45,7 +72,13 @@ struct _tags {
 extern struct _tags *taglist;
 
 
-/* Build in types */
+
+/* 
+ * Element types
+ *
+ * Here the element types are defined.  Important is that OBJECT is zero
+ * and CAMERA is the first non-drawable element.
+ */
 enum ObjType {
 	OBJECT = 0,
 	QUAD,
