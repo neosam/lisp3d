@@ -28,6 +28,7 @@
 #include "debug.h"
 #include "globalindex.h"
 #include "misc.h"
+#include "types.h"
 
 Object *sizing(Object *obj)
 {
@@ -73,7 +74,7 @@ char **parseProperties(char *name, FILE *file)
 	list[0] = "tagname";
 	list[1] = name;
 	
-	for (c = fgetc(file); c != ')'; c = fgetc(file)) {
+	for (c = fgetc(file); c != ')' || state == 2; c = fgetc(file)) {
 		switch (state) {
 		case 0:
 			if (isLetter(c)) {
@@ -305,3 +306,19 @@ void elemSets(char *src, char **dst)
 		*dst = buffer;
 }
 
+void elemSetp(char *src, Point *dst)
+{
+	char *buffer;
+	float x1, x2, x3;
+
+	buffer = lookupList(elemList, src);
+
+	if (buffer != NULL) {
+		printf("Found a point %s %s\n", src, buffer);
+		sscanf(buffer, "(%f %f %f)", &x1, &x2, &x3);
+		dst->x = x1;
+		dst->y = x2;
+		dst->z = x3;
+		printf("point: %f %f %f\n", x1, x2, x3);
+	}
+}

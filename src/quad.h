@@ -22,14 +22,25 @@
 #define QUAD_H
 
 #include "object.h"
+#include "types.h"
 
 /* Quad object */
 struct Quad {
 	Object obj;
 	
 	/* Dimensions */
-	double sizeX, sizeY, sizeZ;
-	double r, g, b;
+	union {
+		Point size;
+		struct {
+			double sizeX, sizeY, sizeZ;
+		};
+	};
+	union {
+		Point color;
+		struct {
+			double r, g, b;
+		};
+	};
 };
 typedef struct Quad Quad;
 

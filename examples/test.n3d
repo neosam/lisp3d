@@ -15,7 +15,7 @@
 
   (layout-inner () layout-inner zeichnet alles ineinander
    Definiere ersten Quader, der sayHello beim zeichnen ausfuehrt
-   (quad (name="q1" sizeX="1.0" sizeY="2.0" sizeZ="1.0" onInit="initText"
+   (quad (name="q1" size="(1.0 2.0 1.0)" onInit="initText"
 	r="1.0" g="0.0" b="0.0"))
 
    Hier ist der zweite Quader.

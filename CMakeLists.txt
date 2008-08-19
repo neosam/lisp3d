@@ -25,7 +25,7 @@ link_libraries(${SDL_LIBRARY}
 	       -lalut)
 
 #ADD_DEFINITIONS(-DNDEBUG)
-ADD_DEFINITIONS(-ansi)
+#ADD_DEFINITIONS(-ansi)
 
 #configure_file(src/config.h.cmake ${CMAKE_BINARY_DIR}/config.h)
 

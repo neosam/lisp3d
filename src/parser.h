@@ -24,6 +24,7 @@
 
 #include <stdio.h>
 #include "object.h"
+#include "types.h"
 
 char **elemList;
 
@@ -33,5 +34,6 @@ char *lookupList(char **list, char *key);
 
 void elemSetd(char *src, double *dst);
 void elemSets(char *src, char **dst);
+void elemSetp(char *src, Point *dst);
 
 #endif

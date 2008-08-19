@@ -118,6 +118,8 @@ Object *quadInit(Object *obj, char **list)
 	elemSetd("r", &quad->r);
 	elemSetd("g", &quad->g);
 	elemSetd("b", &quad->b);
+	elemSetp("size", &quad->size);
+	elemSetp("color", &quad->color);
 	
 	quadCreateVertices(quad);
 	
