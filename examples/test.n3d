@@ -23,28 +23,15 @@
 
   (layout-y ()
    (layout-inner () Zeichne fast eine Pyramide mit Dreiecken
-    Hier mal ein Dreieck.
-    (triangle (x1="0" y1="1" z1="0.0"
-	x2="-1" y2="-1" z2="1"
-	x3="1" y3="-1" z3="1"
-	r="1.0"))
-
-    Noch eins
-    (triangle (x1="0" y1="1" z1="-0.0"
-	x2="-1" y2="-1" z2="-1"
-	x3="1" y3="-1" z3="-1"
-	r="1.0")))
-
+    Hier mal Dreiecke.
+    (triangle (v1="(0 1 0)" v2="(-1 -1 1)" v3="(1 -1 1)" color="(1 0 0)"))
+    (triangle (v1="(0 1 0)" v2="(-1 -1 -1)" v3="(1 -1 1)" color="(1 0 0)")))
+    
    Nicht transparentes Bermuda Triangle Zeichen!
    (layout-inner (name="bermuda-triangle") 
-    (triangle (x1="0" y1="1" z1="0.0"
-	x2="-1" y2="-1" z2="0"
-	x3="1" y3="-1" z3="0"
-	r="0.7" g="0.7" b="0.7"))
-    (triangle (x1="0.4" y1="1" z1="0.0"
-	x2="-0.6" y2="-1" z2="0"
-	x3="1.4" y3="-1" z3="0"
-	r="0.7" g="0.7" b="0.7"))))) ---layout-x closed---
+    (triangle (v1="(0 1 0)" v2="(-1 -1 0)" v3="(1 -1 0)" color="(.7 .7 .7)"))
+    (triangle (v1="(.4 1 0)" v2="(-.6 -1 0)" v3="(1.4 -1 0)" 
+     	      	       	    color="(.7 .7 .7)")))))      ---layout-x closed---
 
  Das Bermuda Triangle Zeichen nochmal:
  (bermuda-triangle ())

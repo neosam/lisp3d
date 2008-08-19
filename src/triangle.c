@@ -32,19 +32,10 @@ Triangle *newTriangle(Object *obj)
 {
 	Triangle *tri = REALLOC(Triangle, obj);
 	
-	tri->x1 = 0.0;
-	tri->x2 = 0.0;
-	tri->x3 = 0.0;
-	tri->y1 = 0.0;
-	tri->y2 = 0.0;
-	tri->y3 = 0.0;
-	tri->z1 = 0.0;
-	tri->z2 = 0.0;
-	tri->z3 = 0.0;
-		
-	tri->r = 0.0;
-	tri->g = 0.0;
-	tri->b = 0.0;
+	pointValues(&tri->v1, 0, 0, 0);
+	pointValues(&tri->v2, 0, 0, 0);
+	pointValues(&tri->v3, 0, 0, 0);
+	pointValues(&tri->color, 0, 0, 0);
 
 	return tri;
 }
@@ -52,13 +43,14 @@ Triangle *newTriangle(Object *obj)
 void triangleCreateVertices(Triangle *tri)
 {
 	Object *obj = (Object*) tri;
-	GLdouble r = tri->r,
-		g = tri->g,
-		b = tri->b;
-	int p1 = objRegisterVertexc(obj, tri->x1, tri->y1, tri->z1, r, g, b),
-		p2 = objRegisterVertexc(obj, tri->x2, tri->y2, tri->z2, 
+	GLdouble r = tri->color.r,
+		g = tri->color.g,
+		b = tri->color.b;
+	int p1 = objRegisterVertexc(obj, tri->v1.x, tri->v1.y, tri->v1.z, 
+                                                                     r, g, b),
+		p2 = objRegisterVertexc(obj, tri->v2.x, tri->v2.y, tri->v2.z, 
                                                                     r, g, b),
-		p3 = objRegisterVertexc(obj, tri->x3, tri->y3, tri->z3, 
+		p3 = objRegisterVertexc(obj, tri->v3.x, tri->v3.y, tri->v3.z, 
 					                            r, g, b);
 	
 	objAddFace(obj, p1, p2, p3);
@@ -73,18 +65,10 @@ Object *triangleInit(Object *obj, char **list)
 	Triangle *dst = newTriangle(obj);
 	elemList = list;
 	
-	elemSetd("x1", &dst->x1);
-	elemSetd("y1", &dst->y1);
-	elemSetd("z1", &dst->z1);
-	elemSetd("x2", &dst->x2);
-	elemSetd("y2", &dst->y2);
-	elemSetd("z2", &dst->z2);
-	elemSetd("x3", &dst->x3);
-	elemSetd("y3", &dst->y3);
-	elemSetd("z3", &dst->z3);
-	elemSetd("r", &dst->r);
-	elemSetd("g", &dst->g);
-	elemSetd("b", &dst->b);
+	elemSetp("v1", &dst->v1);
+	elemSetp("v2", &dst->v2);
+	elemSetp("v3", &dst->v3);
+	elemSetp("color", &dst->color);
 	
 	triangleCreateVertices(dst);
 	
@@ -97,9 +81,9 @@ double *triangleGetRGB(int index)
 	double *res = MALLOCN(double, 3);
 	Triangle *tri = (Triangle *)getGlobalIndex(index);
 	
-	res[0] = tri->r;
-	res[1] = tri->g;
-	res[2] = tri->b;
+	res[0] = tri->color.r;
+	res[1] = tri->color.g;
+	res[2] = tri->color.b;
 	
 	return res;
 }
@@ -109,7 +93,7 @@ void triangleSetRGB(int index, double r, double g, double b)
 {
 	Triangle *tri = (Triangle *)getGlobalIndex(index);
 	
-	tri->r = r;
-	tri->g = g;
-	tri->b = b;
+	tri->color.r = r;
+	tri->color.g = g;
+	tri->color.b = b;
 }
