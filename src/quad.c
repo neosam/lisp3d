@@ -120,23 +120,6 @@ Object *quadInit(Object *obj, char **list)
 	return (Object*) quad;
 }
 
-void quadSizer(Object *obj)
-{
-	Quad *quad = (Quad*) obj;
-	
-	obj->minX = -quad->size.x/2;
-	obj->minY = -quad->size.y/2;
-	obj->minZ = -quad->size.z/2;
-	
-	obj->maxX = quad->size.x/2;
-	obj->maxY = quad->size.y/2;
-	obj->maxZ = quad->size.z/2;
-	
-	obj->width = quad->size.x;
-	obj->height = quad->size.y;
-	obj->depth = quad->size.z;
-}
-
 
 
 double *quadGetRGB(int index)

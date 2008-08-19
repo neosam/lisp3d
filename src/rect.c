@@ -130,8 +130,8 @@ void rectSizer(Object *obj)
 	minBuffer = (minBuffer < rect->x3)? minBuffer: rect->x3;
 	maxBuffer = (maxBuffer > rect->x3)? maxBuffer: rect->x3;
 	
-	obj->minX = (minBuffer < rect->x4)? minBuffer: rect->x4;
-	obj->maxX = (maxBuffer > rect->x4)? maxBuffer: rect->x4;
+	obj->min.x = (minBuffer < rect->x4)? minBuffer: rect->x4;
+	obj->max.x = (maxBuffer > rect->x4)? maxBuffer: rect->x4;
 	
 	minBuffer = rect->y1;
 	maxBuffer = rect->y1;
@@ -144,8 +144,8 @@ void rectSizer(Object *obj)
 	minBuffer = (minBuffer < rect->y3)? minBuffer: rect->y3;
 	maxBuffer = (maxBuffer > rect->y3)? maxBuffer: rect->y3;
 	
-	obj->minY = (minBuffer < rect->y4)? minBuffer: rect->y4;
-	obj->maxY = (maxBuffer > rect->y4)? maxBuffer: rect->y4;
+	obj->min.y = (minBuffer < rect->y4)? minBuffer: rect->y4;
+	obj->max.y = (maxBuffer > rect->y4)? maxBuffer: rect->y4;
 	
 	minBuffer = rect->z1;
 	maxBuffer = rect->z1;
@@ -158,10 +158,10 @@ void rectSizer(Object *obj)
 	minBuffer = (minBuffer < rect->z3)? minBuffer: rect->z3;
 	maxBuffer = (maxBuffer > rect->z3)? maxBuffer: rect->z3;
 	
-	obj->minZ = (minBuffer < rect->z4)? minBuffer: rect->z4;
-	obj->maxZ = (maxBuffer > rect->z4)? maxBuffer: rect->z4;
+	obj->min.z = (minBuffer < rect->z4)? minBuffer: rect->z4;
+	obj->max.z = (maxBuffer > rect->z4)? maxBuffer: rect->z4;
 	
-	obj->width = obj->maxX - obj->minX;
-	obj->height = obj->maxY - obj->minY;
-	obj->depth = obj->maxZ - obj->minZ;
+	obj->dimension.x = obj->max.x - obj->min.x;
+	obj->dimension.y = obj->max.y - obj->min.y;
+	obj->dimension.z = obj->max.z - obj->min.z;
 }

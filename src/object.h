@@ -46,6 +46,7 @@
 #define OBJECT_H
 
 #include <SDL_opengl.h>
+#include "types.h"
 #define OBJ_ENTRY 256
 
 /* Standard object */
@@ -68,9 +69,9 @@ struct Object {
 	char *onDraw, *onInit;
 	
 	/* Sizer variables */
-	double width, height, depth;
-	double minX, minY, minZ;
-	double maxX, maxY, maxZ;
+	Point dimension;
+	Point min;
+	Point max;
 	int sized;
 	
 	/* Mesh settings */

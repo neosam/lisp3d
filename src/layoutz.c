@@ -63,46 +63,48 @@ void layoutZSizer(Object *obj)
 	LayoutZ *lay = (LayoutZ*) obj;
 	
 	if (obj->childs[0] == NULL) {
-		obj->minX = obj->minY = obj->minZ = 
-			obj->maxX = obj->maxY = obj->maxZ = 
-			obj->width = obj->height = obj->depth = 0.0;
+		obj->min.x = obj->min.y = obj->min.z = 
+			obj->max.x = obj->max.y = obj->max.z = 
+			obj->dimension.x = 
+                        obj->dimension.y = 
+		        obj->dimension.z = 0.0;
 		return;
 	}
 	
-	width = obj->childs[0]->width;
-	height = obj->childs[0]->height;
-	depth = obj->childs[0]->depth;
+	width = obj->childs[0]->dimension.x;
+	height = obj->childs[0]->dimension.y;
+	depth = obj->childs[0]->dimension.z;
   
 	for (i = 1; obj->childs[i] != NULL; i++) {
-		height = (obj->childs[i]->height > height)? 
-			                         obj->childs[i]->height: height;
-		width = (obj->childs[i]->width > width)? 
-                                                 obj->childs[i]->width: width;
-		depth += obj->childs[i]->depth;
+		height = (obj->childs[i]->dimension.y > height)? 
+			                         obj->childs[i]->dimension.y: height;
+		width = (obj->childs[i]->dimension.x > width)? 
+                                                 obj->childs[i]->dimension.x: width;
+		depth += obj->childs[i]->dimension.z;
 	}
 	
 	
-	obj->minX = -width/2;
-	obj->maxX = width/2;
-	obj->minY = -height/2;
-	obj->maxY = height/2;
-	obj->minZ = -depth/2;
-	obj->maxZ = depth/2;
-	obj->width = width;
-	obj->height = height;
-	obj->depth = depth;
+	obj->min.x = -width/2;
+	obj->max.x = width/2;
+	obj->min.y = -height/2;
+	obj->max.y = height/2;
+	obj->min.z = -depth/2;
+	obj->max.z = depth/2;
+	obj->dimension.x = width;
+	obj->dimension.y = height;
+	obj->dimension.z = depth;
 	lay->childs = i;
 	
 	/* Layouting */
 	depth = -depth/2;
 	for (i = 0; i < lay->childs; i++) {
-		lay->offsetz[i] = -(obj->childs[i]->maxZ + obj->childs[i]->minZ)
-                                            / 2 + depth + obj->childs[i]->depth 
+		lay->offsetz[i] = -(obj->childs[i]->max.z + obj->childs[i]->min.z)
+                                            / 2 + depth + obj->childs[i]->dimension.z 
                                             / 2;
-		lay->offsety[i] = -(obj->childs[i]->maxY + obj->childs[i]->minY)
+		lay->offsety[i] = -(obj->childs[i]->max.y + obj->childs[i]->min.y)
                                             / 2;
-		lay->offsetx[i] = -(obj->childs[i]->maxX + obj->childs[i]->minX)
+		lay->offsetx[i] = -(obj->childs[i]->max.x + obj->childs[i]->min.x)
                                             / 2;
-		depth += obj->childs[i]->depth;
+		depth += obj->childs[i]->dimension.z;
 	}
 }

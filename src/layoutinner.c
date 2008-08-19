@@ -61,43 +61,45 @@ void layoutInnerSizer(Object *obj)
 		minz, maxz;
 	
 	if (obj->childs[0] == NULL) {
-		obj->minX = obj->minY = obj->minZ = 
-			obj->maxX = obj->maxY = obj->maxZ = 
-			obj->width = obj->height = obj->depth = 0.0;
+		obj->min.x = obj->min.y = obj->min.z = 
+			obj->max.x = obj->max.y = obj->max.z = 
+			obj->dimension.x = 
+                        obj->dimension.y = 
+                        obj->dimension.z = 0.0;
 		return;
 	}
 	
-	minx = obj->childs[0]->minX;
-	maxx = obj->childs[0]->maxX;
+	minx = obj->childs[0]->min.x;
+	maxx = obj->childs[0]->max.x;
 	
-	miny = obj->childs[0]->minY;
-	maxy = obj->childs[0]->maxY;
+	miny = obj->childs[0]->min.y;
+	maxy = obj->childs[0]->max.y;
 	
-	minz = obj->childs[0]->minZ;
-	maxz = obj->childs[0]->maxZ;
+	minz = obj->childs[0]->min.z;
+	maxz = obj->childs[0]->max.z;
 	
 	for (i = 1; obj->childs[i] != NULL; i++) {
-		minx = (obj->childs[i]->minX < minx)? obj->childs[i]->minX: 
+		minx = (obj->childs[i]->min.x < minx)? obj->childs[i]->min.x: 
 			                                                 minx;
-		maxx = (obj->childs[i]->maxX > maxx)? obj->childs[i]->maxX: 
+		maxx = (obj->childs[i]->max.x > maxx)? obj->childs[i]->max.x: 
                                                                          maxx;
-		miny = (obj->childs[i]->minY < miny)? obj->childs[i]->minY: 
+		miny = (obj->childs[i]->min.y < miny)? obj->childs[i]->min.y: 
                                                                          miny;
-		maxy = (obj->childs[i]->maxY > maxy)? obj->childs[i]->maxY: 
+		maxy = (obj->childs[i]->max.y > maxy)? obj->childs[i]->max.y: 
                                                                          maxy;
-		minz = (obj->childs[i]->minZ < minz)? obj->childs[i]->minZ: 
+		minz = (obj->childs[i]->min.z < minz)? obj->childs[i]->min.z: 
                                                                          minz;
-		maxz = (obj->childs[i]->maxZ > maxz)? obj->childs[i]->maxZ: 
+		maxz = (obj->childs[i]->max.z > maxz)? obj->childs[i]->max.z: 
                                                                          maxz;
 	}
 	
-	obj->minX = minx;
-	obj->maxX = maxx;
-	obj->minY = miny;
-	obj->maxY = maxy;
-	obj->minZ = minz;
-	obj->maxZ = maxz;
-	obj->width = maxx - minx;
-	obj->height = maxy - miny;
-	obj->depth = maxz - minz;
+	obj->min.x = minx;
+	obj->max.x = maxx;
+	obj->min.y = miny;
+	obj->max.y = maxy;
+	obj->min.z = minz;
+	obj->max.z = maxz;
+	obj->dimension.x = maxx - minx;
+	obj->dimension.y = maxy - miny;
+	obj->dimension.z = maxz - minz;
 }

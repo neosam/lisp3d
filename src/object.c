@@ -44,16 +44,16 @@ Object *newObject()
 	object->onInit = NULL;
 	object->onDraw = NULL;
 	
-	object->width = 0.0;
-	object->height = 0.0;
-	object->depth = 0.0;
+	object->dimension.x = 0.0;
+	object->dimension.y = 0.0;
+	object->dimension.z = 0.0;
 	
-	object->minX = 0.0;
-	object->maxX = 0.0;
-	object->minY = 0.0;
-	object->maxY = 0.0;
-	object->minZ = 0.0;
-	object->maxZ = 0.0;
+	object->min.x = 0.0;
+	object->max.x = 0.0;
+	object->min.y = 0.0;
+	object->max.y = 0.0;
+	object->min.z = 0.0;
+	object->max.z = 0.0;
 	object->sized = 0;
 	
 	
@@ -79,15 +79,9 @@ Object *objectInit(char **list)
 	elemSets("onDraw", &object->onDraw);
 	elemSets("onInit", &object->onInit);
 	
-	elemSetd("minX", &object->minX);
-	elemSetd("maxX", &object->maxX);
-	elemSetd("minY", &object->minY);
-	elemSetd("maxY", &object->maxY);
-	elemSetd("minZ", &object->minZ);
-	elemSetd("maxZ", &object->maxZ);
-	elemSetd("width", &object->width);
-	elemSetd("height", &object->height);
-	elemSetd("depth", &object->depth);
+	elemSetp("dimension", &object->dimension);
+	elemSetp("min", &object->min);
+	elemSetp("max", &object->max);
 	
 	printf("Tagname: %s\n", lookupList(list, "tagname"));
 	
@@ -121,43 +115,43 @@ void objDoSizer(Object *obj, GLdouble x, GLdouble y, GLdouble z)
 {
 	switch (obj->sized) {
 	case 0:
-		obj->minX = obj->maxX = x;
-		obj->minY = obj->maxY = y;
-		obj->minZ = obj->maxZ = z;
+		obj->min.x = obj->max.x = x;
+		obj->min.y = obj->max.y = y;
+		obj->min.z = obj->max.z = z;
 		obj->sized = 1;
 		break;
 	case 1:
-		if (x < obj->minX)
-			obj->minX = x;
-		if (x > obj->maxX)
-			obj->maxX = x;
+		if (x < obj->min.x)
+			obj->min.x = x;
+		if (x > obj->max.x)
+			obj->max.x = x;
     
-		if (y < obj->minY)
-			obj->minY = y;
-		if (y > obj->maxY)
-			obj->maxY = y;
+		if (y < obj->min.y)
+			obj->min.y = y;
+		if (y > obj->max.y)
+			obj->max.y = y;
 		
-		if (z < obj->minZ)
-			obj->minZ = z;
-		if (z > obj->maxZ)
-			obj->maxZ = z;
+		if (z < obj->min.z)
+			obj->min.z = z;
+		if (z > obj->max.z)
+			obj->max.z = z;
 		break;
 	}
 	
-	obj->width = obj->maxX - obj->minX;
-	obj->height = obj->maxY - obj->minY;
-	obj->depth = obj->maxZ - obj->minZ;
+	obj->dimension.x = obj->max.x - obj->min.x;
+	obj->dimension.y = obj->max.y - obj->min.y;
+	obj->dimension.z = obj->max.z - obj->min.z;
 	
 
-	assert(obj->width >= 0.0);
-	assert(obj->height >= 0.0);
-	assert(obj->depth >= 0.0);
-	assert(obj->minX <= x);
-	assert(obj->maxX >= x);
-	assert(obj->minY <= y);
-	assert(obj->maxY >= y);
-	assert(obj->minZ <= z);
-	assert(obj->maxZ >= z);
+	assert(obj->dimension.x >= 0.0);
+	assert(obj->dimension.y >= 0.0);
+	assert(obj->dimension.z >= 0.0);
+	assert(obj->min.x <= x);
+	assert(obj->max.x >= x);
+	assert(obj->min.y <= y);
+	assert(obj->max.y >= y);
+	assert(obj->min.z <= z);
+	assert(obj->max.z >= z);
 }
 
 GLint objRegisterVertex(Object *obj,

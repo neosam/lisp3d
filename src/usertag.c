@@ -72,13 +72,13 @@ void usertagSizer(Object *obj)
 {
 	Object *ref = taglist[obj->type].ref;
 	
-	obj->minX = ref->minX;
-	obj->maxX = ref->maxX;
-	obj->minY = ref->minY;
-	obj->maxY = ref->maxY;
-	obj->minZ = ref->minZ;
-	obj->maxZ = ref->maxZ;
-	obj->width = ref->width;
-	obj->height = ref->height;
-	obj->depth = ref->depth;
+	obj->min.x = ref->min.x;
+	obj->max.x = ref->max.x;
+	obj->min.y = ref->min.y;
+	obj->max.y = ref->max.y;
+	obj->min.z = ref->min.z;
+	obj->max.z = ref->max.z;
+	obj->dimension.x = ref->dimension.x;
+	obj->dimension.y = ref->dimension.y;
+	obj->dimension.z = ref->dimension.z;
 }
