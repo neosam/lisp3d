@@ -314,11 +314,9 @@ void elemSetp(char *src, Point *dst)
 	buffer = lookupList(elemList, src);
 
 	if (buffer != NULL) {
-		printf("Found a point %s %s\n", src, buffer);
 		sscanf(buffer, "(%f %f %f)", &x1, &x2, &x3);
 		dst->x = x1;
 		dst->y = x2;
 		dst->z = x3;
-		printf("point: %f %f %f\n", x1, x2, x3);
 	}
 }

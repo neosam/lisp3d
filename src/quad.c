@@ -32,9 +32,9 @@ Quad *newQuad(Object *obj)
 {
 	Quad *quad = REALLOC(Quad, obj);
 	
-	quad->sizeX = 0.0;
-	quad->sizeY = 0.0;
-	quad->sizeZ = 0.0;
+	quad->size.x = 0.0;
+	quad->size.y = 0.0;
+	quad->size.z = 0.0;
 
 	return quad;
 }
@@ -42,10 +42,10 @@ Quad *newQuad(Object *obj)
 void quadCreateVertices(Quad *quad)
 {
 	Object *obj = (Object *)quad;
-	double sizeX = quad->sizeX,
-		sizeY = quad->sizeY,
-		sizeZ = quad->sizeZ,
-		r = quad->r, g = quad->g, b = quad->b;
+	double sizeX = quad->size.x,
+		sizeY = quad->size.y,
+		sizeZ = quad->size.z,
+		r = quad->color.r, g = quad->color.g, b = quad->color.b;
 	
 	int 
 		ftopleft = objRegisterVertexc(obj, -sizeX/2,  sizeY/2,  sizeZ/2,
@@ -112,12 +112,6 @@ Object *quadInit(Object *obj, char **list)
 	quad = newQuad(obj);
 	elemList = list;
 	
-	elemSetd("sizeX", &quad->sizeX);
-	elemSetd("sizeY", &quad->sizeY);
-	elemSetd("sizeZ", &quad->sizeZ);
-	elemSetd("r", &quad->r);
-	elemSetd("g", &quad->g);
-	elemSetd("b", &quad->b);
 	elemSetp("size", &quad->size);
 	elemSetp("color", &quad->color);
 	
@@ -130,17 +124,17 @@ void quadSizer(Object *obj)
 {
 	Quad *quad = (Quad*) obj;
 	
-	obj->minX = -quad->sizeX/2;
-	obj->minY = -quad->sizeY/2;
-	obj->minZ = -quad->sizeZ/2;
+	obj->minX = -quad->size.x/2;
+	obj->minY = -quad->size.y/2;
+	obj->minZ = -quad->size.z/2;
 	
-	obj->maxX = quad->sizeX/2;
-	obj->maxY = quad->sizeY/2;
-	obj->maxZ = quad->sizeZ/2;
+	obj->maxX = quad->size.x/2;
+	obj->maxY = quad->size.y/2;
+	obj->maxZ = quad->size.z/2;
 	
-	obj->width = quad->sizeX;
-	obj->height = quad->sizeY;
-	obj->depth = quad->sizeZ;
+	obj->width = quad->size.x;
+	obj->height = quad->size.y;
+	obj->depth = quad->size.z;
 }
 
 
@@ -150,9 +144,9 @@ double *quadGetRGB(int index)
 	double *res = MALLOCN(double, 3);
 	Quad *quad = (Quad *)getGlobalIndex(index);
 	
-	res[0] = quad->r;
-	res[1] = quad->g;
-	res[2] = quad->b;
+	res[0] = quad->color.r;
+	res[1] = quad->color.g;
+	res[2] = quad->color.b;
 	
 	return res;
 }
@@ -165,9 +159,9 @@ void quadSetRGB(int index, double r, double g, double b)
 	GLdouble *color;
 	int i;
 	
-	quad->r = r;
-	quad->g = g;
-	quad->b = b;
+	quad->color.r = r;
+	quad->color.g = g;
+	quad->color.b = b;
 	
 	for (i = 0; i < obj->ventries; i++) {
 		color = C(obj, i);

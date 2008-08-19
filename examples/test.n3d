@@ -16,10 +16,10 @@
   (layout-inner () layout-inner zeichnet alles ineinander
    Definiere ersten Quader, der sayHello beim zeichnen ausfuehrt
    (quad (name="q1" size="(1.0 2.0 1.0)" onInit="initText"
-	r="1.0" g="0.0" b="0.0"))
+	color="(1.0 0.0 0.0)"))
 
    Hier ist der zweite Quader.
-   (quad (name="q2" sizeX="5.0" sizeY="0.333" sizeZ="0.333" onInit="initText")))
+   (quad (name="q2" size="(5.0 0.333 0.333)" onInit="initText")))
 
   (layout-y ()
    (layout-inner () Zeichne fast eine Pyramide mit Dreiecken

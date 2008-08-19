@@ -29,18 +29,8 @@ struct Quad {
 	Object obj;
 	
 	/* Dimensions */
-	union {
-		Point size;
-		struct {
-			double sizeX, sizeY, sizeZ;
-		};
-	};
-	union {
-		Point color;
-		struct {
-			double r, g, b;
-		};
-	};
+	Point size;
+	Point color;
 };
 typedef struct Quad Quad;
 
