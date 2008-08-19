@@ -22,15 +22,13 @@
 #define RECT_H
 
 #include "object.h"
+#include "types.h"
 
 struct Rect {
 	Object obj;
 	
-	double x1, y1, z1;
-	double x2, y2, z2;
-	double x3, y3, z3;
-	double x4, y4, z4;
-	double r, g, b;
+	Point v1, v2, v3, v4;
+	Point color;
 };
 typedef struct Rect Rect;
 
