@@ -32,18 +32,10 @@ Camera *cam = NULL;
 Camera *newCamera(Object *obj)
 {
 	Camera *result = REALLOC(Camera, obj);
-	
-	result->x = 0.0;
-	result->y = 0.0;
-	result->z = 0.0;
-	
-	result->frontX = 0.0;
-	result->frontY = 0.0;
-	result->frontZ = -1.0;
-	
-	result->upX = 0.0;
-	result->upY = 1.0;
-	result->upZ = 0.0;
+
+	pointValues(&result->pos, 0, 0, 0);
+	pointValues(&result->lookat, 0, 0, 0);
+	pointValues(&result->up, 0, 0, 0);
 	
 	result->fovy = 60.0;
 	result->aspect = 1.33333;
@@ -56,17 +48,9 @@ Object *cameraInit(Object *obj, char **list)
 	char *buffer;
 	elemList = list;
 	
-	elemSetd("x", &dst->x);
-	elemSetd("y", &dst->y);
-	elemSetd("z", &dst->z);
-	
-	elemSetd("frontX", &dst->frontX);
-	elemSetd("frontY", &dst->frontY);
-	elemSetd("frontZ", &dst->frontZ);
-	
-	elemSetd("upX", &dst->upX);
-	elemSetd("upY", &dst->upY);
-	elemSetd("upZ", &dst->upZ);
+	elemSetp("pos", &dst->pos);
+	elemSetp("lookat", &dst->lookat);	
+	elemSetp("up", &dst->up);	
 	
 	elemSetd("fovy", &dst->fovy);
 	elemSetd("aspect", &dst->aspect);

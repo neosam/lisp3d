@@ -46,6 +46,7 @@ add_executable(lisp3d
 	src/rect.c
 	src/test.c
 	src/triangle.c
+	src/types.c
 	src/usertag.c
 	src/lua/lapi.c
 	src/lua/ldebug.c  

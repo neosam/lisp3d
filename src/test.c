@@ -78,9 +78,9 @@ void game()
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
-    gluLookAt(cam->x, cam->y, cam->z,
-	      cam->frontX, cam->frontY, cam->frontZ,
-	      cam->upX, cam->upY, cam->upZ);
+    gluLookAt(cam->pos.x, cam->pos.y, cam->pos.z,
+	      cam->lookat.x, cam->lookat.y, cam->lookat.z,
+	      cam->up.x, cam->up.y, cam->up.z);
     glRotatef(angle, 0.0, 1.0, 0.0);
     angle+=0.3;
     draw(obj);

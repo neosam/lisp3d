@@ -56,6 +56,5 @@
        x4="-1"  y4="1"  z4="2"
        g="1.0"))
 
- (camera (x="0" y="6" z="-14" frontX="0" frontY="0" frontZ="0"
-	upX="0" upY="1" upZ="0"))
+ (camera (pos="(0 6 -14)" lookat="(0 0 0)" up="(0 1 0)"))
 )

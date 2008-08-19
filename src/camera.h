@@ -22,15 +22,16 @@
 #define CAMERA_H
 
 #include "object.h"
+#include "types.h"
 
 struct Camera
 {
 	Object obj;
 
 	/* Position */
-	double x, y, z;
-	double frontX, frontY, frontZ;
-	double upX, upY, upZ;
+	Point pos;
+	Point lookat;
+	Point up;
 	
 	double fovy, aspect;
 };
