@@ -25,14 +25,14 @@
 
 struct Camera
 {
-  Object obj;
+	Object obj;
 
-  /* Position */
-  double x, y, z;
-  double frontX, frontY, frontZ;
-  double upX, upY, upZ;
-
-  double fovy, aspect;
+	/* Position */
+	double x, y, z;
+	double frontX, frontY, frontZ;
+	double upX, upY, upZ;
+	
+	double fovy, aspect;
 };
 typedef struct Camera Camera;
 
