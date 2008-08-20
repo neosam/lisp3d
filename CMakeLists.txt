@@ -5,7 +5,7 @@ project(lisp3d)
 
 # Check and load dependencies
 INCLUDE(${CMAKE_ROOT}/Modules/FindSDL.cmake)
-#INCLUDE(${CMAKE_ROOT}/Modules/FindSDL_image.cmake)
+INCLUDE(${CMAKE_ROOT}/Modules/FindSDL_image.cmake)
 INCLUDE(${CMAKE_ROOT}/Modules/FindOpenGL.cmake)
 INCLUDE(${CMAKE_ROOT}/Modules/FindGLU.cmake)
 #INCLUDE(${CMAKE_ROOT}/Modules/FindOpenAL.cmake)
@@ -13,7 +13,7 @@ INCLUDE(${CMAKE_ROOT}/Modules/FindGLU.cmake)
 # Bind include options for the c++ compiler
 include_directories(${CMAKE_BINARY_DIR}
 		    ${SDL_INCLUDE_DIR}
-#		    ${SDLIMAGE_INCLUDE_DIR}
+		    ${SDLIMAGE_INCLUDE_DIR}
 		    ${OPENGL_INCLUDE_DIR})
 
 # Bind libraries for the linker
